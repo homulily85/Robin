@@ -6,7 +6,7 @@ This is my small game for a course at my universiy.
 
 ### Installing
 
-Download and extract _Robin_v1.x.x.zip_, open _Robin.exe_ and enjoy.
+Download and extract _Robin_v1.x.x.zip_ [here](https://github.com/homulily85/Robin/releases/download/release/Robin_v1.0.zip), open _Robin.exe_ and enjoy.
 
 ### Thanks
 
@@ -31,4 +31,4 @@ Người chơi sẽ giúp _Robin_ tiêu diệt những con goblin đang xâm chi
 
 ## Cài đặt
 
-Sau khi tải và giải nén file _Robin_v1.x.x.zip_, mở file _Robin.exe_ để bắt đầu chơi.
+Sau khi tải và giải nén file _Robin_v1.x.x.zip_ [tại đây](https://github.com/homulily85/Robin/releases/download/release/Robin_v1.0.zip), mở file _Robin.exe_ để bắt đầu chơi.
