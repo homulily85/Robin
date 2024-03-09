@@ -4,11 +4,11 @@
 
 This is my small game for a course at my universiy.
 
-### Installing
+## Installing
 
 Download and extract _Robin_v1.x.x.zip_ [here](https://github.com/homulily85/Robin/releases/download/release/Robin_v1.0.zip), open _Robin.exe_ and enjoy.
 
-### Thanks
+## Thanks
 
 This game using these following textures:
 
