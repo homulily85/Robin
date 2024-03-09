@@ -1,4 +1,4 @@
-**Vietnamese below.**
+**Tiếng Việt ở phía dưới**
 # English
 ## Robin
 
@@ -18,7 +18,7 @@ This game using these following textures:
 - Welcome screen and level choosing background, game tilte, button: _Robin GUI_ by _Prinbles_, [Author](https://prinbles.itch.io/robin)
 - Level background: _Free Parallax 2D Backgrounds_ by _Free Game Assets_, [Author](https://free-game-assets.itch.io/free-parallax-2d-backgrounds)
 
-# Vietnamese
+# Tiếng Việt
 ## Robin
 
 Đây là game được viết cho bài tập lớn môn _Lập trình nâng cao_ ở _UET_.
