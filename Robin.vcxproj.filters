@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\core">
+      <UniqueIdentifier>{a10a8b98-b175-4494-a347-eb5d6d43e355}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{d76873ca-1247-4bde-b5c6-e95eeb354ec7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\state">
+      <UniqueIdentifier>{8c718a81-63f4-4068-aee6-43f72aa82923}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\state">
+      <UniqueIdentifier>{b0f9b9a0-5c6f-49c2-b75e-47574946ca8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\state\level">
+      <UniqueIdentifier>{b4a6862b-2720-4f3c-9900-10e7c4442a81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\state\level">
+      <UniqueIdentifier>{d325d0fa-2462-4bce-a93f-5b09f60f21e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\object">
+      <UniqueIdentifier>{fed3df9b-0612-4d8d-9af5-bf7b64b98c81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\object">
+      <UniqueIdentifier>{1dd00329-07bd-454a-94b5-cce5fa991773}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="core\const.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\game.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\game_object.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\game_state.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\game_state_manager.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\input_handle.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\texture_manager.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\vector2D.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="state\game_over.h">
+      <Filter>Header Files\state</Filter>
+    </ClInclude>
+    <ClInclude Include="state\level_list.h">
+      <Filter>Header Files\state</Filter>
+    </ClInclude>
+    <ClInclude Include="state\menu_state.h">
+      <Filter>Header Files\state</Filter>
+    </ClInclude>
+    <ClInclude Include="state\victory.h">
+      <Filter>Header Files\state</Filter>
+    </ClInclude>
+    <ClInclude Include="state\level\level1.h">
+      <Filter>Header Files\state\level</Filter>
+    </ClInclude>
+    <ClInclude Include="state\level\Level2.h">
+      <Filter>Header Files\state\level</Filter>
+    </ClInclude>
+    <ClInclude Include="state\level\Level3.h">
+      <Filter>Header Files\state\level</Filter>
+    </ClInclude>
+    <ClInclude Include="state\level\Level4.h">
+      <Filter>Header Files\state\level</Filter>
+    </ClInclude>
+    <ClInclude Include="state\level\Level5.h">
+      <Filter>Header Files\state\level</Filter>
+    </ClInclude>
+    <ClInclude Include="state\level\Level6.h">
+      <Filter>Header Files\state\level</Filter>
+    </ClInclude>
+    <ClInclude Include="state\level\Level7.h">
+      <Filter>Header Files\state\level</Filter>
+    </ClInclude>
+    <ClInclude Include="state\level\Level8.h">
+      <Filter>Header Files\state\level</Filter>
+    </ClInclude>
+    <ClInclude Include="object\enemy.h">
+      <Filter>Header Files\object</Filter>
+    </ClInclude>
+    <ClInclude Include="object\menu_button.h">
+      <Filter>Header Files\object</Filter>
+    </ClInclude>
+    <ClInclude Include="object\player.h">
+      <Filter>Header Files\object</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="core\game.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\game_object.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\game_state_manager.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\input_handle.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\main.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\texture_manager.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\vector2D.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="state\game_over.cpp">
+      <Filter>Source Files\state</Filter>
+    </ClCompile>
+    <ClCompile Include="state\level_list.cpp">
+      <Filter>Source Files\state</Filter>
+    </ClCompile>
+    <ClCompile Include="state\menu_state.cpp">
+      <Filter>Source Files\state</Filter>
+    </ClCompile>
+    <ClCompile Include="state\victory.cpp">
+      <Filter>Source Files\state</Filter>
+    </ClCompile>
+    <ClCompile Include="state\level\level1.cpp">
+      <Filter>Source Files\state\level</Filter>
+    </ClCompile>
+    <ClCompile Include="state\level\Level2.cpp">
+      <Filter>Source Files\state\level</Filter>
+    </ClCompile>
+    <ClCompile Include="state\level\Level3.cpp">
+      <Filter>Source Files\state\level</Filter>
+    </ClCompile>
+    <ClCompile Include="state\level\Level4.cpp">
+      <Filter>Source Files\state\level</Filter>
+    </ClCompile>
+    <ClCompile Include="state\level\Level5.cpp">
+      <Filter>Source Files\state\level</Filter>
+    </ClCompile>
+    <ClCompile Include="state\level\Level6.cpp">
+      <Filter>Source Files\state\level</Filter>
+    </ClCompile>
+    <ClCompile Include="state\level\Level7.cpp">
+      <Filter>Source Files\state\level</Filter>
+    </ClCompile>
+    <ClCompile Include="state\level\Level8.cpp">
+      <Filter>Source Files\state\level</Filter>
+    </ClCompile>
+    <ClCompile Include="object\enemy.cpp">
+      <Filter>Source Files\object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\menu_button.cpp">
+      <Filter>Source Files\object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\player.cpp">
+      <Filter>Source Files\object</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
