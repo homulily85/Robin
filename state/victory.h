@@ -9,7 +9,7 @@ class Victory : public Game_state
 {
 public:
 	Victory() :Game_state() { game::instance()->get_log_file() << "Entered Victory\n"; }
-	~Victory() { clean(); game::instance()->get_log_file() << "Exited Victory\n"; }
+	~Victory() { game::instance()->get_log_file() << "Exited Victory\n"; }
 	void clean();
 	virtual void update();
 	virtual void render();

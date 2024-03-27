@@ -9,7 +9,7 @@ class Menu_state :public Game_state
 {
 public:
 	Menu_state()=default;
-	~Menu_state() { clean(); }
+	~Menu_state() {  }
 	void clean();
 	virtual void update();
 	virtual void render();

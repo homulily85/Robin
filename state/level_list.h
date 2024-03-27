@@ -9,7 +9,7 @@ class Level_list:public Game_state
 {
 public:
 	Level_list() = default;
-	~Level_list() { clean(); }
+	~Level_list() { }
 	void clean();
 	virtual void update();
 	virtual void render();

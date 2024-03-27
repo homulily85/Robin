@@ -9,7 +9,7 @@ class Game_over: public Game_state
 {
 public:
 	Game_over():Game_state() { game::instance()->get_log_file() << "Entered Game Over\n"; }
-	~Game_over(){ clean(); game::instance()->get_log_file() << "Exited Game Over\n"; }
+	~Game_over(){  game::instance()->get_log_file() << "Exited Game Over\n"; }
 	void clean();
 	virtual void update();
 	virtual void render();

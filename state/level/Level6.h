@@ -11,7 +11,7 @@ class Level6 :public Game_state
 {
 public:
 	Level6() :Game_state() { game::instance()->get_log_file() << "Entered Level 6\n"; }
-	~Level6() { clean(); game::instance()->get_log_file() << "Exited Level 6\n"; }
+	~Level6() {  game::instance()->get_log_file() << "Exited Level 6\n"; }
 	void clean();
 	virtual void update();
 	virtual void render();

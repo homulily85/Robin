@@ -1,21 +1,2 @@
 Entered Level 1
-Exited Level 1
-Entered Level 2
-Exited Level 2
-Entered Level 3
-Exited Level 3
-Entered Level 4
-Exited Level 4
-Entered Level 5
-Exited Level 5
-Entered Level 6
-Exited Level 6
-Entered Level 7
-Exited Level 7
-Entered Level 8
-Exited Level 8
-Entered Level 8
-Exited Level 8
-Entered Level 6
-Exited Level 6
 Game cleaned up successfully
