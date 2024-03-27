@@ -1,8 +1,7 @@
 #include "game.h"
 #include "const.h"
-
-#undef main
-int main(int argc, char* args[]) {
+#include <Windows.h>
+int WINAPI WinMain(	HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,int nCmdShow){
 	Uint32 start_time{};
 	Uint32 frame_time{};
 	if (!game::instance()->init("Robin", WINDOW_WIDTH, WINDOW_HEIGHT)) return 0;
