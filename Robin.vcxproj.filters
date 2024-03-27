@@ -63,9 +63,6 @@
     <ClInclude Include="core\vector2D.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="state\game_over.h">
-      <Filter>Header Files\state</Filter>
-    </ClInclude>
     <ClInclude Include="state\level_list.h">
       <Filter>Header Files\state</Filter>
     </ClInclude>
@@ -107,6 +104,9 @@
     </ClInclude>
     <ClInclude Include="object\player.h">
       <Filter>Header Files\object</Filter>
+    </ClInclude>
+    <ClInclude Include="state\game_over.h">
+      <Filter>Header Files\state</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

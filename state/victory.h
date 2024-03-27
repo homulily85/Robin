@@ -4,12 +4,12 @@
 #include "game_state.h"
 #include "game_object.h"
 #include <vector>
-
+#include "game.h"
 class Victory : public Game_state
 {
 public:
-	Victory() =default;
-	~Victory() { clean(); }
+	Victory() :Game_state() { game::instance()->get_log_file() << "Entered Victory\n"; }
+	~Victory() { clean(); game::instance()->get_log_file() << "Exited Victory\n"; }
 	void clean();
 	virtual void update();
 	virtual void render();

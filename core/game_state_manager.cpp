@@ -1,5 +1,4 @@
 #include "game_state_manager.h"
-#include <iostream>
 Game_state_manager::~Game_state_manager()
 {
 	for (int i = 0; i < m_game_state.size(); i++) {

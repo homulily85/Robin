@@ -47,7 +47,7 @@ void Level1::clean()
 void Level1::update()
 {
 	for (int i = 0; i < m_object.size(); i++) {
-		if (!m_exit && m_object[i] != nullptr)  m_object[i]->update();
+		if (!m_exit && m_object[i] != nullptr&&m_object.size()<100)  m_object[i]->update();
 		else return;
 	}
 	if (!m_exit && m_player != nullptr) m_player->update();

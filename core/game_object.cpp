@@ -1,6 +1,6 @@
 #include "game_object.h"
 #include "game.h"
-void Game_object::load(std::string texture_id, int x, int y, int w, int h, SDL_RendererFlip flip)
+void Game_object::load(const std::string& texture_id, int x, int y, int w, int h, SDL_RendererFlip flip)
 {
 	m_texture_id = texture_id;
 	m_position.set_x(x);

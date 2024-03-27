@@ -14,7 +14,7 @@ public:
 	//x,y: Initial position of the texture
 	//w,h: size of the texture
 	//flip: flip type (SDL_FLIP_NONE by default)
-	Player(std::string texture_id, int strength, int x, int y, int w, int h, SDL_RendererFlip flip = SDL_FLIP_NONE) :Game_object(texture_id, x, y, w, h, flip), m_strength{ strength } {}
+	Player(const std::string& texture_id, int strength, int x, int y, int w, int h, SDL_RendererFlip flip = SDL_FLIP_NONE) :Game_object(texture_id, x, y, w, h, flip), m_strength{ strength } {}
 	Player():Game_object(){}
 	~Player() = default;
 	//Update object state

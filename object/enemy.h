@@ -12,7 +12,7 @@ public:
 	//x,y: Initial position of the texture
 	//w,h: size of the texture
 	//flip: flip type (SDL_FLIP_NONE by default)
-	Enemy(std::string texture_id, int strength, int x, int y, int w, int h, SDL_RendererFlip flip = SDL_FLIP_NONE) :Game_object(texture_id, x, y, w, h, flip), m_strength{ strength } {}
+	Enemy(const std::string& texture_id, int strength, int x, int y, int w, int h, SDL_RendererFlip flip = SDL_FLIP_NONE) :Game_object(texture_id, x, y, w, h, flip), m_strength{ strength } {}
 	Enemy() :Game_object(), m_enemy_id{enemy_id++} {}
 	~Enemy() = default;
 	//Update object state

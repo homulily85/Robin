@@ -6,12 +6,12 @@
 #include "player.h"
 #include "enemy.h"
 #include <vector>
-
+#include "game.h"
 class Level8 :public Game_state
 {
 public:
-	Level8() = default;
-	~Level8() { clean(); }
+	Level8() { game::instance()->get_log_file() << "Entered Level 8\n"; }
+	~Level8() { clean(); game::instance()->get_log_file() << "Exited Level 8\n"; }
 	void clean();
 	virtual void update();
 	virtual void render();

@@ -7,7 +7,7 @@ class Menu_button:public Game_object
 {
 public:
 	//Load texture. See Game_object for more information
-	Menu_button(std::string texture_id, int x, int y, int w, int h, void (*callback)(),SDL_RendererFlip flip = SDL_FLIP_NONE) :Game_object(texture_id, x, y, w, h, flip), m_callback{ callback } {}
+	Menu_button(const std::string& texture_id, int x, int y, int w, int h, void (*callback)(),SDL_RendererFlip flip = SDL_FLIP_NONE) :Game_object(texture_id, x, y, w, h, flip), m_callback{ callback } {}
 	~Menu_button() = default;
 	void update();
 private:

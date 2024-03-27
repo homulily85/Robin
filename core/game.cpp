@@ -12,7 +12,7 @@ game* game::instance()
 bool game::init(const char* name, int width, int height, bool is_full_screen, int xpos, int ypos, int flags)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
-        std::cout << SDL_GetError() << '\n';
+        m_log_file << SDL_GetError() << '\n';
         return false;
     }
     if (is_full_screen) {
@@ -20,18 +20,18 @@ bool game::init(const char* name, int width, int height, bool is_full_screen, in
     }
     m_window = SDL_CreateWindow(name, xpos, ypos, width, height, flags);
     if (m_window == nullptr) {
-        std::cout << SDL_GetError() << '\n';
+        m_log_file << SDL_GetError() << '\n';
         return false;
     }
     m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (m_renderer == nullptr) {
-        std::cout << SDL_GetError() << '\n';
+        m_log_file << SDL_GetError() << '\n';
         return false;
     }
     SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
     SDL_RenderClear(m_renderer);
     if (TTF_Init() == -1) {
-        std::cout << TTF_GetError() << '\n';
+        m_log_file << TTF_GetError() << '\n';
         return false;
     }
 
@@ -65,4 +65,5 @@ void game::clean_up()
     SDL_DestroyWindow(m_window);
     SDL_Quit();
     TTF_Quit();
+    m_log_file << "Game cleaned up successfully\n";
 }

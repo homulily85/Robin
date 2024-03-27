@@ -4,12 +4,12 @@
 #include "game_state.h"
 #include "game_object.h"
 #include <vector>
-
+#include "game.h"
 class Game_over: public Game_state
 {
 public:
-	Game_over()=default;
-	~Game_over() { clean(); }
+	Game_over():Game_state() { game::instance()->get_log_file() << "Entered Game Over\n"; }
+	~Game_over(){ clean(); game::instance()->get_log_file() << "Exited Game Over\n"; }
 	void clean();
 	virtual void update();
 	virtual void render();

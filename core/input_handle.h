@@ -30,7 +30,7 @@ private:
 	void on_mouse_move();
 	void on_mouse_button_up();
 	void on_mouse_button_down();
-	SDL_Event m_event;
+	SDL_Event m_event{};
 
 	std::array<bool, 3> m_mouse_state{};
 	Vector2D* m_mouse_position{ new Vector2D };

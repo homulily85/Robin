@@ -13,7 +13,7 @@ public:
 	//x,y: Initial position of the texture
 	//w,h: size of the texture
 	//flip: flip type (SDL_FLIP_NONE by default)
-	Game_object(std::string texture_id, int x, int y, int w, int h, SDL_RendererFlip flip = SDL_FLIP_NONE) : m_position{ static_cast<double>(x),static_cast<double>(y)}, m_texture_id{texture_id}, m_w{w}, m_h{h}, m_flip{flip} {}
+	Game_object(const std::string& texture_id, int x, int y, int w, int h, SDL_RendererFlip flip = SDL_FLIP_NONE) : m_position{ static_cast<double>(x),static_cast<double>(y)}, m_texture_id{texture_id}, m_w{w}, m_h{h}, m_flip{flip} {}
 	Game_object() = default;
 	virtual ~Game_object() = default;
 	//Load texture information into a game object.
@@ -22,7 +22,7 @@ public:
 	//x,y: Initial position of the texture
 	//w,h: size of the texture
 	//flip: flip type (SDL_FLIP_NONE by default)
-	void load(std::string texture_id, int x, int y, int w, int h, SDL_RendererFlip flip = SDL_FLIP_NONE);
+	void load(const std::string& texture_id, int x, int y, int w, int h, SDL_RendererFlip flip = SDL_FLIP_NONE);
 	//Draw texture using texture_manager
 	void draw();
 	//Update object state

@@ -7,11 +7,9 @@
 #include "texture_manager.h"
 #include "level_list.h"
 #include <array>
-#include <iostream>
-
 #include <SDL.h>
 #include <SDL_ttf.h>
-
+#include <fstream>
 using namespace std::string_literals;
 
 class game
@@ -44,6 +42,7 @@ public:
 	void quit() { m_is_running = false; }
 	Game_state_manager* get_game_state_manager() { return m_game_state_machine; }
 	bool m_is_paused{ false };
+	std::ofstream& get_log_file() { return m_log_file; }
 private:
 	//Ensure that game object can be initialized only once
 	game() {}
@@ -52,8 +51,8 @@ private:
 	int m_current_frame{};
 	bool m_is_running{ false };
 	static game* m_instance;
-	std::array<Game_object*,3> enemy{};
 	Game_state_manager* m_game_state_machine{ nullptr };
+	std::ofstream m_log_file{"log.txt"};
 };
 
 #endif // !GAME_H
