@@ -53,6 +53,7 @@ private:
 	static game* m_instance;
 	Game_state_manager* m_game_state_machine{ nullptr };
 	std::ofstream m_log_file{"log.txt"};
+	
 };
 
 #endif // !GAME_H

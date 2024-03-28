@@ -66,4 +66,5 @@ void game::clean_up()
     SDL_Quit();
     TTF_Quit();
     m_log_file << "Game cleaned up successfully\n";
+    m_log_file.close();
 }

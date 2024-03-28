@@ -1,6 +1,3 @@
 Entered Level 2
 Exited Level 2
-Entered Level 6
-Exited Level 6
-Entered Level 7
 Game cleaned up successfully
