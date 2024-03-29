@@ -147,6 +147,7 @@
     <ClInclude Include="core\input_handle.h" />
     <ClInclude Include="core\texture_manager.h" />
     <ClInclude Include="core\vector2D.h" />
+    <ClInclude Include="Level9.h" />
     <ClInclude Include="object\enemy.h" />
     <ClInclude Include="object\menu_button.h" />
     <ClInclude Include="object\player.h" />
@@ -171,6 +172,7 @@
     <ClCompile Include="core\main.cpp" />
     <ClCompile Include="core\texture_manager.cpp" />
     <ClCompile Include="core\vector2D.cpp" />
+    <ClCompile Include="Level9.cpp" />
     <ClCompile Include="object\enemy.cpp" />
     <ClCompile Include="object\menu_button.cpp" />
     <ClCompile Include="object\player.cpp" />

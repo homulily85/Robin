@@ -150,7 +150,6 @@ bool Level1::on_exit()
 void Level1::replay()
 {
 	game::instance()->get_game_state_manager()->replace(new Level1);
-	std::cout<< "replay" << std::endl;
 }
 
 void Level1::to_level_list()

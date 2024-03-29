@@ -1,3 +1,5 @@
 Entered Level 2
 Exited Level 2
+Entered Level 8
+Exited Level 8
 Game cleaned up successfully

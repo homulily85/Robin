@@ -244,7 +244,6 @@ bool Level3::on_exit()
 void Level3::replay()
 {
 	game::instance()->get_game_state_manager()->replace(new Level3);
-	std::cout << "replay" << std::endl;
 }
 
 void Level3::to_level_list()
