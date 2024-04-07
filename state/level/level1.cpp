@@ -93,13 +93,13 @@ void Level1::update()
 				}
 			}
 		}
-	/*if (m_player->get_strength() == 0&&enemy_frame_check()) {
+	if (m_player->get_strength() == 0&& frame_check_defeat()) {
 		SDL_Delay(500);
 		game::instance()->get_game_state_manager()->replace(new Game_over);
 	}
-	else if (enemy_count == count_defeated() && enemy_frame_check()) {
+	else if (enemy_count == count_defeated() && frame_check_victory()) {
 		SDL_Delay(500);
-		game::instance()->get_game_state_manager()->replace(new Victory);*/
+		game::instance()->get_game_state_manager()->replace(new Victory);
 	}
 }
 
@@ -116,10 +116,10 @@ void Level1::render()
 		m_player->draw();
 		m_player->strength_to_text(PLAYER_BASE_X+50, PLAYER_BASE_Y+15);
 		if (m_player->get_strength() != 0&&!m_player->get_attack()) {
-			m_player->set_current_frame((int)((SDL_GetTicks() / 100) % 11));
+			m_player->set_current_frame((int)((SDL_GetTicks() / 100) % (PLAYER_IDLE_MAX_FRAME-1)));
 		}
 		else if (m_player->get_strength() != 0 && m_player->get_attack()){
-			if (m_player->get_current_frame() < 2) {
+			if (m_player->get_current_frame() < PLAYER_ATTACK_MAX_FRAME-1) {
 				int frame = m_player->get_current_frame();
 				frame_time = SDL_GetTicks() - start_time;
 				if (frame_time > 100) {
@@ -133,7 +133,7 @@ void Level1::render()
 				m_player->change_texture("player_idle"s, PLAYER_WIDTH, PLAYER_HEIGHT, SDL_FLIP_NONE);
 			}
 		}
-		else if (m_player->get_strength() == 0 && m_player->get_current_frame() <3 && !m_enemy[0]->get_attack() && !m_enemy[1]->get_attack()) {
+		else if (m_player->get_strength() == 0 && m_player->get_current_frame() <PLAYER_DEATH_MAX_FRAME-1 && !m_enemy[0]->get_attack() && !m_enemy[1]->get_attack()) {
 			int frame = m_player->get_current_frame();
 			frame_time = SDL_GetTicks() - start_time;
 			start_time = SDL_GetTicks();
@@ -148,7 +148,10 @@ void Level1::render()
 	if (!m_exit && m_enemy[0] != nullptr) {
 		m_enemy[0]->draw();
 		m_enemy[0]->strength_to_text(ENEMY0_BASE_X+50, ENEMY0_BASE_Y+15);
-		if (m_enemy[0]->get_strength() == 0 && m_enemy[0]->get_current_frame() != 4&&!m_player->get_attack()) {
+		if (m_enemy[0]->get_strength() != 0 && !m_enemy[0]->get_attack()) {
+			m_enemy[0]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME-1)));
+		}
+		if (m_enemy[0]->get_strength() == 0 && m_enemy[0]->get_current_frame() < ENEMY_DEATH_MAX_FRAME-1&&!m_player->get_attack()) {
 			int frame = m_enemy[0]->get_current_frame();
 			frame_time = SDL_GetTicks() - start_time;
 			start_time = SDL_GetTicks();
@@ -158,7 +161,7 @@ void Level1::render()
 				SDL_Delay(100);
 			}
 		}
-		else if (m_enemy[0]->get_attack() && m_enemy[0]->get_current_frame() < 7) {
+		else if (m_enemy[0]->get_attack() && m_enemy[0]->get_current_frame() < ENEMY_ATTACK_MAX_FRAME-1) {
 			int frame = m_enemy[0]->get_current_frame();
 			frame_time = SDL_GetTicks() - start_time;
 			start_time = SDL_GetTicks();
@@ -174,7 +177,10 @@ void Level1::render()
 	if (!m_exit && m_enemy[1] != nullptr) {
 		m_enemy[1]->draw();
 		m_enemy[1]->strength_to_text(ENEMY1_BASE_X+50, ENEMY1_BASE_Y+15);
-		if (m_enemy[1]->get_strength() == 0&&m_enemy[1]->get_current_frame()!=4&&!m_player->get_attack()) {
+		if (m_enemy[1]->get_strength() != 0 && !m_enemy[1]->get_attack()) {
+			m_enemy[1]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME-1)));
+		}
+		if (m_enemy[1]->get_strength() == 0&&m_enemy[1]->get_current_frame()<ENEMY_DEATH_MAX_FRAME-1&&!m_player->get_attack()) {
 			int frame = m_enemy[1]->get_current_frame();
 			frame_time = SDL_GetTicks() - start_time;
 			start_time = SDL_GetTicks();
@@ -184,7 +190,7 @@ void Level1::render()
 				SDL_Delay(100);
 			}
 		}
-		else if (m_enemy[1]->get_attack() && m_enemy[1]->get_current_frame() < 7) {
+		else if (m_enemy[1]->get_attack() && m_enemy[1]->get_current_frame() < ENEMY_ATTACK_MAX_FRAME-1) {
 			int frame = m_enemy[1]->get_current_frame();
 			frame_time = SDL_GetTicks() - start_time;
 			start_time = SDL_GetTicks();
@@ -268,17 +274,18 @@ int Level1::count_defeated()
 	return count;
 }
 
-bool Level1::enemy_frame_check()
+bool Level1::frame_check_victory()
 {
 	if (count_defeated() == enemy_count) {
 		for (auto p : m_enemy) {
-			if (p->get_current_frame() != 4) return false;
+			if (p->get_current_frame() != ENEMY_DEATH_MAX_FRAME-1) return false;
 		}
 		return true;
 	}
-	else if (m_player->get_strength() == 0) {
-		for (auto p : m_enemy) {
-			if (p->get_current_frame() == 8) return false;
-		}
-	}
+}
+
+bool Level1::frame_check_defeat()
+{
+	if (m_player->get_strength() == 0 && m_player->get_current_frame() >= PLAYER_DEATH_MAX_FRAME-1) return true;
+	else return false;
 }

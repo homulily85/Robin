@@ -24,8 +24,11 @@ public:
 	void change_strength(int strength, char ope);
 	void strength_to_text(int x, int y);
 	void set_strength_to_zero() { m_strength = 0; }
+	void set_attack(bool attack) { is_attack = attack; }
+	bool get_attack() const { return is_attack; }
 private:
 	int m_strength{};
+	bool is_attack{ false };
 };
 
 #endif // !PLAYER_H

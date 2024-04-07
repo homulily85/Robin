@@ -28,6 +28,8 @@ private:
 	std::vector <Enemy*> m_enemy{};
 	int enemy_count{ 0 };
 	int count_defeated();
+	bool frame_check_victory();
+	bool frame_check_defeat();
 };
 
 #endif // !LEVEL1_H

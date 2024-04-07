@@ -23,13 +23,16 @@ public:
 	//w,h: size of the texture
 	//flip: flip type (SDL_FLIP_NONE by default)
 	void load(const std::string& texture_id, int x, int y, int w, int h, SDL_RendererFlip flip = SDL_FLIP_NONE);
+	void change_texture(const std::string& texture_id, int w, int h,SDL_RendererFlip flip=SDL_FLIP_NONE);
 	//Draw texture using texture_manager
 	void draw();
 	//Update object state
 	virtual void update() {}
 	virtual void clean()  {}
 	void set_current_frame(int frame) { m_current_frame = frame; }
+	void set_current_row(int row) { m_current_row = row; }
 	void set_position(int x, int y) { m_position.set_x(x); m_position.set_y(y); }
+	int get_current_frame() const { return m_current_frame; }
 protected:
 	std::string m_texture_id{};
 	SDL_RendererFlip m_flip{ SDL_FLIP_NONE };

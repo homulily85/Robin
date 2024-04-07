@@ -21,10 +21,13 @@ public:
 	void strength_to_text(int x, int y);
 	void set_strength_to_zero() { m_strength = 0; }
 	void set_strength_to_one() { m_strength = 1; }
+	bool get_attack() const { return m_attack; }
+	void set_attack(bool attack) { m_attack = attack; }
 private:
 	static int enemy_id;
 	int m_enemy_id{ 0 };
 	int m_strength{0};
+	bool m_attack{ false };
 };
 
 #endif // !ENEMY_H
