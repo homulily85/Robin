@@ -177,7 +177,7 @@
       <Filter>Source Files\object</Filter>
     </ClCompile>
     <ClCompile Include="state\level\Level7.cpp">
-      <Filter>Source Files\state</Filter>
+      <Filter>Source Files\state\level</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
