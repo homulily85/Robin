@@ -57,9 +57,9 @@ void Level1::update()
 		else return;
 	}
 	Vector2D* mouse_pos = Input_handle::instance()->get_mouse_position();
-	if (mouse_pos->get_x() > ENEMY0_BASE_X && mouse_pos->get_x() < ENEMY0_BASE_X+ BASE_WIDTH && mouse_pos->get_y() > ENEMY0_BASE_Y&& mouse_pos->get_y() < ENEMY0_BASE_Y+ BASE_HEIGHT &&Input_handle::instance()->get_mouse_state(LEFT)==true&&m_enemy[0]->get_strength()>0&&m_player->get_strength()!=0) {
+	if (mouse_pos->get_x() > ENEMY0_BASE_X && mouse_pos->get_x() < ENEMY0_BASE_X+ BASE_WIDTH && mouse_pos->get_y() > ENEMY0_BASE_Y&& mouse_pos->get_y() < ENEMY0_BASE_Y+ BASE_HEIGHT &&Input_handle::instance()->get_mouse_state(LEFT)==true&&m_enemy[0]->get_strength()>0&&m_player->get_strength()>0) {
 		if (m_enemy[0] != nullptr) {
-			m_player->set_position(ENEMY0_BASE_X + 0.25*(BASE_WIDTH-PLAYER_WIDTH), ENEMY0_BASE_Y + 65);
+			m_player->set_position(ENEMY0_BASE_X + 0.25*(BASE_WIDTH-PLAYER_WIDTH), ENEMY0_BASE_Y + ENEMY_Y_SCALE);
 			if (m_player->get_strength() > m_enemy[0]->get_strength()) {
 				m_player->change_strength(m_enemy[0]->get_strength(), '+');
 				m_enemy[0]->set_strength_to_zero();
@@ -77,7 +77,7 @@ void Level1::update()
 	}
 	else if (mouse_pos->get_x() > ENEMY1_BASE_X && mouse_pos->get_x() < ENEMY1_BASE_X+ BASE_WIDTH && mouse_pos->get_y() > ENEMY1_BASE_Y&& mouse_pos->get_y() < ENEMY1_BASE_Y+ BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true&&m_enemy[1]->get_strength()>0&&m_player->get_strength()!=0) {
 			if (m_enemy[1] != nullptr) {
-				m_player->set_position(ENEMY1_BASE_X+ 0.25 * (BASE_WIDTH - PLAYER_WIDTH), ENEMY1_BASE_Y+65);
+				m_player->set_position(ENEMY1_BASE_X+ 0.25 * (BASE_WIDTH - PLAYER_WIDTH), ENEMY1_BASE_Y+ ENEMY_Y_SCALE);
 				if (m_player->get_strength() > m_enemy[1]->get_strength()) {
 					m_player->change_strength(m_enemy[1]->get_strength(), '+');
 					m_enemy[1]->set_strength_to_zero();
@@ -133,7 +133,7 @@ void Level1::render()
 				m_player->change_texture("player_idle"s, PLAYER_WIDTH, PLAYER_HEIGHT, SDL_FLIP_NONE);
 			}
 		}
-		else if (m_player->get_strength() == 0 && m_player->get_current_frame() <PLAYER_DEATH_MAX_FRAME-1 && !m_enemy[0]->get_attack() && !m_enemy[1]->get_attack()) {
+		else if (m_player->get_strength() == 0 && m_player->get_current_frame() <PLAYER_DEATH_MAX_FRAME-1 && !check_enemy_attack()) {
 			int frame = m_player->get_current_frame();
 			frame_time = SDL_GetTicks() - start_time;
 			start_time = SDL_GetTicks();
@@ -225,9 +225,9 @@ bool Level1::on_start()
 	m_object.push_back(new Game_object("roof"s, PLAYER_BASE_X, PLAYER_BASE_Y, BASE_WIDTH,BASE_HEIGHT));//player's base
 	m_object.push_back(new Game_object("base"s, ENEMY0_BASE_X, ENEMY0_BASE_Y, BASE_WIDTH,BASE_HEIGHT));//enemy0's base
 	m_object.push_back(new Game_object("base"s, ENEMY1_BASE_X, ENEMY1_BASE_Y, BASE_WIDTH,BASE_HEIGHT));//enemy1's base
-	m_player=new Player("player_idle"s,PLAYER_STRENGTH, PLAYER_BASE_X+0.5*(BASE_WIDTH - PLAYER_WIDTH), PLAYER_BASE_Y + 68, PLAYER_WIDTH, PLAYER_HEIGHT);
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY0_STRENGTH, ENEMY0_BASE_X+0.5*(BASE_WIDTH-ENEMY_WIDTH), ENEMY0_BASE_Y + 68, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy0
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY1_STRENGTH, ENEMY1_BASE_X+ 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY1_BASE_Y+68, ENEMY_WIDTH, ENEMY_HEIGHT,SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy1
+	m_player=new Player("player_idle"s,PLAYER_STRENGTH, PLAYER_BASE_X+0.5*(BASE_WIDTH - PLAYER_WIDTH), PLAYER_BASE_Y + PLAYER_Y_SCALE, PLAYER_WIDTH, PLAYER_HEIGHT);
+	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY0_STRENGTH, ENEMY0_BASE_X+0.5*(BASE_WIDTH-ENEMY_WIDTH), ENEMY0_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy0
+	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY1_STRENGTH, ENEMY1_BASE_X+ 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY1_BASE_Y+ ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT,SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy1
 	m_exit= false;
 	return true;
 }
@@ -288,4 +288,12 @@ bool Level1::frame_check_defeat()
 {
 	if (m_player->get_strength() == 0 && m_player->get_current_frame() >= PLAYER_DEATH_MAX_FRAME-1) return true;
 	else return false;
+}
+
+bool Level1::check_enemy_attack()
+{
+	for (auto p : m_enemy) {
+		if (p->get_attack()) return true;
+	}
+	return false;
 }

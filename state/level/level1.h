@@ -30,6 +30,7 @@ private:
 	int count_defeated();
 	bool frame_check_victory();
 	bool frame_check_defeat();
+	bool check_enemy_attack();
 };
 
 #endif // !LEVEL1_H
