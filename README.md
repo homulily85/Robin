@@ -29,7 +29,7 @@ This game using these following textures:
 
 Người chơi sẽ giúp _Robin_ tiêu diệt những con goblin đang xâm chiếm ở các tòa tháp khác nhau. 
 
-Để hoàn thành mỗi màn chơi, người chơi cần tiêu diệt hết tất cả goblin và thu thập tất cả vật phẩm trong màn chơi. Người chơi chỉ có thể tiêu diệt goblin có sức mạnh nhỏ hơn sức mạnh hiện tại của mình, nếu không màn chơi sẽ kết thúc.
+Để hoàn thành mỗi màn chơi, người chơi cần tiêu diệt hết tất cả goblin trong màn chơi. Người chơi chỉ có thể tiêu diệt goblin có sức mạnh nhỏ hơn sức mạnh hiện tại của mình, nếu không màn chơi sẽ kết thúc.
 
 ## Cài đặt
 
