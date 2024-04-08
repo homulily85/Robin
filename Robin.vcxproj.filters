@@ -108,9 +108,6 @@
     <ClInclude Include="state\game_over.h">
       <Filter>Header Files\state</Filter>
     </ClInclude>
-    <ClInclude Include="state\level\Level9.h">
-      <Filter>Header Files\state\level</Filter>
-    </ClInclude>
     <ClInclude Include="state\level.h">
       <Filter>Header Files\state\level</Filter>
     </ClInclude>
@@ -167,9 +164,6 @@
     <ClCompile Include="state\level\Level6.cpp">
       <Filter>Source Files\state\level</Filter>
     </ClCompile>
-    <ClCompile Include="state\level\Level7.cpp">
-      <Filter>Source Files\state\level</Filter>
-    </ClCompile>
     <ClCompile Include="state\level\Level8.cpp">
       <Filter>Source Files\state\level</Filter>
     </ClCompile>
@@ -182,8 +176,8 @@
     <ClCompile Include="object\player.cpp">
       <Filter>Source Files\object</Filter>
     </ClCompile>
-    <ClCompile Include="state\level\Level9.cpp">
-      <Filter>Source Files\state\level</Filter>
+    <ClCompile Include="state\level\Level7.cpp">
+      <Filter>Source Files\state</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

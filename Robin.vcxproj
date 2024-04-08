@@ -160,7 +160,6 @@
     <ClInclude Include="state\level\Level6.h" />
     <ClInclude Include="state\level\Level7.h" />
     <ClInclude Include="state\level\Level8.h" />
-    <ClInclude Include="state\level\Level9.h" />
     <ClInclude Include="state\level_list.h" />
     <ClInclude Include="state\menu_state.h" />
     <ClInclude Include="state\victory.h" />
@@ -185,7 +184,6 @@
     <ClCompile Include="state\level\Level6.cpp" />
     <ClCompile Include="state\level\Level7.cpp" />
     <ClCompile Include="state\level\Level8.cpp" />
-    <ClCompile Include="state\level\Level9.cpp" />
     <ClCompile Include="state\level_list.cpp" />
     <ClCompile Include="state\menu_state.cpp" />
     <ClCompile Include="state\victory.cpp" />
