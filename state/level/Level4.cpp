@@ -351,6 +351,7 @@ bool Level4::on_start()
 	if (!Texture_manager::instance()->load("pic/player_death.png"s, "player_death"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/enemy_default.png"s, "enemy_default"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/enemy_death.png"s, "enemy_death"s, game::instance()->get_renderer())) return false;
+	if (!Texture_manager::instance()->load("pic/enemy_attack.png"s, "enemy_attack"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/buff.png"s, "buff"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/debuff.png"s, "debuff"s, game::instance()->get_renderer())) return false;
 
