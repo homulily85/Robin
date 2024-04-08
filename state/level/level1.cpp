@@ -225,9 +225,9 @@ bool Level1::on_start()
 	m_object.push_back(new Game_object("roof"s, PLAYER_BASE_X, PLAYER_BASE_Y, BASE_WIDTH,BASE_HEIGHT));//player's base
 	m_object.push_back(new Game_object("base"s, ENEMY0_BASE_X, ENEMY0_BASE_Y, BASE_WIDTH,BASE_HEIGHT));//enemy0's base
 	m_object.push_back(new Game_object("base"s, ENEMY1_BASE_X, ENEMY1_BASE_Y, BASE_WIDTH,BASE_HEIGHT));//enemy1's base
-	m_player=new Player("player_idle"s,PLAYER_STRENGTH, PLAYER_BASE_X+0.5*(BASE_WIDTH - PLAYER_WIDTH), PLAYER_BASE_Y + 65, PLAYER_WIDTH, PLAYER_HEIGHT);
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY0_STRENGTH, ENEMY0_BASE_X+0.5*(BASE_WIDTH-ENEMY_WIDTH), ENEMY0_BASE_Y + 65, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy0
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY1_STRENGTH, ENEMY1_BASE_X+ 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY1_BASE_Y+65, ENEMY_WIDTH, ENEMY_HEIGHT,SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy1
+	m_player=new Player("player_idle"s,PLAYER_STRENGTH, PLAYER_BASE_X+0.5*(BASE_WIDTH - PLAYER_WIDTH), PLAYER_BASE_Y + 68, PLAYER_WIDTH, PLAYER_HEIGHT);
+	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY0_STRENGTH, ENEMY0_BASE_X+0.5*(BASE_WIDTH-ENEMY_WIDTH), ENEMY0_BASE_Y + 68, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy0
+	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY1_STRENGTH, ENEMY1_BASE_X+ 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY1_BASE_Y+68, ENEMY_WIDTH, ENEMY_HEIGHT,SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy1
 	m_exit= false;
 	return true;
 }
