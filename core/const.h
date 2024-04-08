@@ -27,6 +27,7 @@ constexpr int TO_LEVEL_LIST_HEIGHT{ 84 };
 
 constexpr int PLAYER_Y_SCALE{ 68 };
 constexpr int ENEMY_Y_SCALE{ 68 };
+constexpr int BUFF_Y_SCALE{ 45 };
 
 constexpr int ENEMY_DEFAULT_MAX_FRAME{ 4 };
 constexpr int ENEMY_ATTACK_MAX_FRAME{ 8 };

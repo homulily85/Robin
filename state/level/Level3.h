@@ -29,6 +29,9 @@ private:
 	int enemy_count{ 0 };
 	int count_defeated();
 	bool is_tower_destroyed(int start_enemy_index, int end_enemy_index);
+	bool frame_check_victory();
+	bool frame_check_defeat();
+	bool check_enemy_attack();
 };
 
 #endif // !LEVEL3_H

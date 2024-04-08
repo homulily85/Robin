@@ -271,8 +271,8 @@ bool Level2::on_start()
 	if (!Texture_manager::instance()->load("pic/enemy_attack.png"s, "enemy_attack"s, game::instance()->get_renderer())) return false;
 
 	m_object.push_back(new Game_object("game_play_background"s, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT));
-	m_object.push_back(new Menu_button("replay"s, WINDOW_WIDTH * 0.02, WINDOW_HEIGHT * 0.02, 84, 84, replay));
-	m_object.push_back(new Menu_button("to_level_list"s, WINDOW_WIDTH * 0.1, WINDOW_HEIGHT * 0.02, REPLAY_WIDTH, REPLAY_HEIGHT, to_level_list));
+	m_object.push_back(new Menu_button("replay"s, WINDOW_WIDTH * 0.02, WINDOW_HEIGHT * 0.02, REPLAY_WIDTH, REPLAY_HEIGHT, replay));
+	m_object.push_back(new Menu_button("to_level_list"s, WINDOW_WIDTH * 0.1, WINDOW_HEIGHT * 0.02, TO_LEVEL_LIST_WIDTH, TO_LEVEL_LIST_HEIGHT, to_level_list));
 	m_object.push_back(new Game_object("roof"s, PLAYER_BASE_X, PLAYER_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//player' s base
 	m_object.push_back(new Game_object("base"s, ENEMY0_BASE_X, ENEMY0_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy0's base, tower 1
 	m_object.push_back(new Game_object("base"s, ENEMY1_BASE_X, ENEMY1_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy1's base, tower 2
@@ -282,7 +282,6 @@ bool Level2::on_start()
 	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY1_STRENGTH , ENEMY1_BASE_X+ 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY1_BASE_Y+ ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy1
 	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY2_STRENGTH, ENEMY2_BASE_X+ 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY2_BASE_Y+ ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy2
 	m_exit = false;
-	return true;
 	return true;
 }
 
