@@ -147,11 +147,11 @@
     <ClInclude Include="core\input_handle.h" />
     <ClInclude Include="core\texture_manager.h" />
     <ClInclude Include="core\vector2D.h" />
-    <ClInclude Include="Level9.h" />
     <ClInclude Include="object\enemy.h" />
     <ClInclude Include="object\menu_button.h" />
     <ClInclude Include="object\player.h" />
     <ClInclude Include="state\game_over.h" />
+    <ClInclude Include="state\level.h" />
     <ClInclude Include="state\level\level1.h" />
     <ClInclude Include="state\level\Level2.h" />
     <ClInclude Include="state\level\Level3.h" />
@@ -160,6 +160,7 @@
     <ClInclude Include="state\level\Level6.h" />
     <ClInclude Include="state\level\Level7.h" />
     <ClInclude Include="state\level\Level8.h" />
+    <ClInclude Include="state\level\Level9.h" />
     <ClInclude Include="state\level_list.h" />
     <ClInclude Include="state\menu_state.h" />
     <ClInclude Include="state\victory.h" />
@@ -172,7 +173,6 @@
     <ClCompile Include="core\main.cpp" />
     <ClCompile Include="core\texture_manager.cpp" />
     <ClCompile Include="core\vector2D.cpp" />
-    <ClCompile Include="Level9.cpp" />
     <ClCompile Include="object\enemy.cpp" />
     <ClCompile Include="object\menu_button.cpp" />
     <ClCompile Include="object\player.cpp" />
@@ -185,6 +185,7 @@
     <ClCompile Include="state\level\Level6.cpp" />
     <ClCompile Include="state\level\Level7.cpp" />
     <ClCompile Include="state\level\Level8.cpp" />
+    <ClCompile Include="state\level\Level9.cpp" />
     <ClCompile Include="state\level_list.cpp" />
     <ClCompile Include="state\menu_state.cpp" />
     <ClCompile Include="state\victory.cpp" />

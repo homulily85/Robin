@@ -286,7 +286,7 @@ bool Level8::on_start()
 	if (!Texture_manager::instance()->load("pic/roof.png"s, "roof"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/player_default.png"s, "player_default"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/enemy_default.png"s, "enemy_default"s, game::instance()->get_renderer())) return false;
-	if (!Texture_manager::instance()->load("pic/multiple_buff.png"s, "multiple_buff"s, game::instance()->get_renderer())) return false;
+	if (!Texture_manager::instance()->load("pic/buff.png"s, "buff"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/debuff.png"s, "debuff"s, game::instance()->get_renderer())) return false;
 
 	if (!Texture_manager::instance()->create_texture_from_string("/"s, "div"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
@@ -322,14 +322,14 @@ bool Level8::on_start()
 	m_player = new Player("player_default"s, PLAYER_STRENGTH, PLAYER_BASE_X + 50, PLAYER_BASE_Y + 65, 37, 51);
 
 	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY0_STRENGTH, ENEMY0_BASE_X + 50, ENEMY0_BASE_Y + 68, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy0
-	m_enemy.push_back(new Enemy("multiple_buff"s, ENEMY1_STRENGTH, ENEMY1_BASE_X + 65, ENEMY1_BASE_Y + 40, 19, 76, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy1
+	m_enemy.push_back(new Enemy("buff"s, ENEMY1_STRENGTH, ENEMY1_BASE_X + 65, ENEMY1_BASE_Y + 40, 19, 76, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy1
 	m_enemy.push_back(new Enemy("debuff"s, ENEMY2_STRENGTH, ENEMY2_BASE_X + 50, ENEMY2_BASE_Y + 85, 32, 32, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy2
 	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY3_STRENGTH, ENEMY3_BASE_X + 50, ENEMY3_BASE_Y + 65, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy3
 	m_enemy.push_back(new Enemy("debuff"s, ENEMY4_STRENGTH, ENEMY4_BASE_X + 50, ENEMY4_BASE_Y + 85, 32, 32, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy4
-	m_enemy.push_back(new Enemy("multiple_buff"s, ENEMY5_STRENGTH, ENEMY5_BASE_X + 65, ENEMY5_BASE_Y + 40, 19, 76, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy5
+	m_enemy.push_back(new Enemy("buff"s, ENEMY5_STRENGTH, ENEMY5_BASE_X + 65, ENEMY5_BASE_Y + 40, 19, 76, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy5
 	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY6_STRENGTH, ENEMY6_BASE_X + 50, ENEMY6_BASE_Y + 68, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy6
 	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY7_STRENGTH, ENEMY7_BASE_X + 50, ENEMY7_BASE_Y + 65, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy7
-	m_enemy.push_back(new Enemy("multiple_buff"s, ENEMY8_STRENGTH, ENEMY8_BASE_X + 65, ENEMY8_BASE_Y + 40, 19, 76, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy8
+	m_enemy.push_back(new Enemy("buff"s, ENEMY8_STRENGTH, ENEMY8_BASE_X + 65, ENEMY8_BASE_Y + 40, 19, 76, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy8
 	m_enemy.push_back(new Enemy("debuff"s, ENEMY9_STRENGTH, ENEMY9_BASE_X + 50, ENEMY9_BASE_Y + 85, 32, 32, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy9
 
 	m_exit = false;
@@ -349,7 +349,7 @@ bool Level8::on_exit()
 	Texture_manager::instance()->remove_from_texture_map("roof"s);
 	Texture_manager::instance()->remove_from_texture_map("player_default"s);
 	Texture_manager::instance()->remove_from_texture_map("enemy_default"s);
-	Texture_manager::instance()->remove_from_texture_map("multiple_buff"s);
+	Texture_manager::instance()->remove_from_texture_map("buff"s);
 	Texture_manager::instance()->remove_from_texture_map("debuff"s);
 	Texture_manager::instance()->remove_from_texture_map("div"s);
 	Texture_manager::instance()->remove_from_texture_map("mul1"s);

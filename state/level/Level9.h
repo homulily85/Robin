@@ -1,5 +1,5 @@
-#ifndef LEVEL6_H
-#define LEVEL6_H
+#ifndef LEVEL9_H
+#define LEVEL9_H
 
 #include "game_state.h"
 #include "game_object.h"
@@ -7,11 +7,11 @@
 #include "enemy.h"
 #include <vector>
 #include "game.h"
-class Level6 :public Game_state
+class Level9 :public Game_state
 {
 public:
-	Level6() :Game_state() { game::instance()->get_log_file() << "Entered Level 6\n"; }
-	~Level6() {  game::instance()->get_log_file() << "Exited Level 6\n"; }
+	Level9() :Game_state() { game::instance()->get_log_file() << "Entered Level 9\n"; }
+	~Level9() { game::instance()->get_log_file() << "Exited Level 9\n"; }
 	void clean();
 	virtual void update();
 	virtual void render();
@@ -28,10 +28,6 @@ private:
 	int enemy_count{ 0 };
 	int count_defeated();
 	bool is_tower_destroyed(int start_enemy_index, int end_enemy_index);
-	bool frame_check_victory();
-	bool frame_check_defeat();
-	bool check_enemy_attack();
-
 };
 
-#endif // !LEVEL6_H
+#endif // !LEVEL9_H

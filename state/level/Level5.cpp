@@ -155,10 +155,10 @@ void Level5::update()
 			m_enemy[5]->set_current_frame(100);
 		}
 	}
-	else if (mouse_pos->get_x() > ENEMY6_BASE_X && mouse_pos->get_x() < ENEMY6_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY6_BASE_Y && mouse_pos->get_y() < ENEMY6_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_player->get_strength() > 0 && m_enemy[6]->get_strength() > 1) {
+	else if (is_tower_destroyed(0, 3) && mouse_pos->get_x() > ENEMY6_BASE_X && mouse_pos->get_x() < ENEMY6_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY6_BASE_Y && mouse_pos->get_y() < ENEMY6_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_player->get_strength() > 0 && m_enemy[6]->get_strength() > 1) {
 		if (m_enemy[6] != nullptr) {
 			m_player->set_position(ENEMY6_BASE_X + 0.25 * (BASE_WIDTH - PLAYER_WIDTH), ENEMY6_BASE_Y + ENEMY_Y_SCALE);
-			m_player->change_strength(m_enemy[6]->get_strength(), '*');
+			m_player->change_strength(m_enemy[6]->get_strength(), '/');
 			m_enemy[6]->set_strength_to_one();
 			m_enemy[6]->set_current_frame(100);
 		}
@@ -181,7 +181,7 @@ void Level5::update()
 			}
 		}
 	}
-	if (is_tower_destroyed(0, 7) && mouse_pos->get_x() > ENEMY8_BASE_X && mouse_pos->get_x() < ENEMY8_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY8_BASE_Y && mouse_pos->get_y() < ENEMY8_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_player->get_strength() > 0 && m_enemy[8]->get_strength() > 0) {
+	else if (is_tower_destroyed(0, 7) && mouse_pos->get_x() > ENEMY8_BASE_X && mouse_pos->get_x() < ENEMY8_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY8_BASE_Y && mouse_pos->get_y() < ENEMY8_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_player->get_strength() > 0 && m_enemy[8]->get_strength() > 0) {
 		if (m_enemy[8] != nullptr) {
 			m_player->set_position(ENEMY8_BASE_X + 0.25 * (BASE_WIDTH - PLAYER_WIDTH), ENEMY8_BASE_Y + ENEMY_Y_SCALE);
 			if (m_player->get_strength() > m_enemy[8]->get_strength()) {
@@ -518,15 +518,20 @@ bool Level5::on_exit()
 	Texture_manager::instance()->remove_from_texture_map("to_level_list"s);
 	Texture_manager::instance()->remove_from_texture_map("base"s);
 	Texture_manager::instance()->remove_from_texture_map("roof"s);
-	Texture_manager::instance()->remove_from_texture_map("player_default"s);
+	Texture_manager::instance()->remove_from_texture_map("player_idle"s);
+	Texture_manager::instance()->remove_from_texture_map("player_attack"s);
+	Texture_manager::instance()->remove_from_texture_map("player_death"s);
 	Texture_manager::instance()->remove_from_texture_map("enemy_default"s);
+	Texture_manager::instance()->remove_from_texture_map("enemy_death"s);
+	Texture_manager::instance()->remove_from_texture_map("enemy_attack"s);
 	Texture_manager::instance()->remove_from_texture_map("buff"s);
-	Texture_manager::instance()->remove_from_texture_map("mul1"s);
-	Texture_manager::instance()->remove_from_texture_map("div"s);
 	Texture_manager::instance()->remove_from_texture_map("debuff"s);
+	Texture_manager::instance()->remove_from_texture_map("div"s);
+	Texture_manager::instance()->remove_from_texture_map("mul1"s);
+	Texture_manager::instance()->remove_from_texture_map("mul2"s);
 	Texture_manager::instance()->remove_from_texture_map("plus"s);
 	Texture_manager::instance()->remove_from_texture_map("minus"s);
-	Texture_manager::instance()->remove_from_texture_map("mul2"s);
+
 
 	m_exit = true;
 	return true;

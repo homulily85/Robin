@@ -1,4 +1,4 @@
-#include "Level7.h"
+#include "Level9.h"
 #include <iostream>
 #include "game.h"
 #include "menu_button.h"
@@ -12,14 +12,15 @@
 
 constexpr int PLAYER_STRENGTH{ 10 };
 
-constexpr int ENEMY0_STRENGTH{ 32 };
-constexpr int ENEMY1_STRENGTH{ 10 };
-constexpr int ENEMY2_STRENGTH{ 18 };
-constexpr int ENEMY3_STRENGTH{ 3 };
-constexpr int ENEMY4_STRENGTH{ 320 };
-constexpr int ENEMY5_STRENGTH{ 5 };
-constexpr int ENEMY6_STRENGTH{ 400 };
-constexpr int ENEMY7_STRENGTH{ 207 };
+constexpr int ENEMY0_STRENGTH{ 6 };
+constexpr int ENEMY1_STRENGTH{ 30 };
+constexpr int ENEMY2_STRENGTH{ 2 };
+constexpr int ENEMY3_STRENGTH{ 31 };
+constexpr int ENEMY4_STRENGTH{ 75 };
+constexpr int ENEMY5_STRENGTH{ 13 };
+constexpr int ENEMY6_STRENGTH{ 3 };
+constexpr int ENEMY7_STRENGTH{ 30 };
+constexpr int ENEMY8_STRENGTH{ 2 };
 
 constexpr int PLAYER_BASE_X{ 296 };
 constexpr int PLAYER_BASE_Y{ 460 };
@@ -30,17 +31,17 @@ constexpr int ENEMY0_BASE_Y{ 460 };
 constexpr int ENEMY1_BASE_X{ 700 };
 constexpr int ENEMY1_BASE_Y{ 332 };
 
-constexpr int ENEMY2_BASE_X{ 700 };
-constexpr int ENEMY2_BASE_Y{ 212 };
+constexpr int ENEMY2_BASE_X{ 900 };
+constexpr int ENEMY2_BASE_Y{ 460 };
 
 constexpr int ENEMY3_BASE_X{ 900 };
-constexpr int ENEMY3_BASE_Y{ 460 };
+constexpr int ENEMY3_BASE_Y{ 332 };
 
 constexpr int ENEMY4_BASE_X{ 900 };
-constexpr int ENEMY4_BASE_Y{ 332 };
+constexpr int ENEMY4_BASE_Y{ 212 };
 
 constexpr int ENEMY5_BASE_X{ 900 };
-constexpr int ENEMY5_BASE_Y{ 212 };
+constexpr int ENEMY5_BASE_Y{ 100 };
 
 constexpr int ENEMY6_BASE_X{ 1100 };
 constexpr int ENEMY6_BASE_Y{ 460 };
@@ -48,11 +49,14 @@ constexpr int ENEMY6_BASE_Y{ 460 };
 constexpr int ENEMY7_BASE_X{ 1100 };
 constexpr int ENEMY7_BASE_Y{ 332 };
 
+constexpr int ENEMY8_BASE_X{ 1100 };
+constexpr int ENEMY8_BASE_Y{ 212 };
+
 using namespace std::string_literals;
 
-const std::string Level7::m_state_ID{ "LEVEL7"s };
+const std::string Level9::m_state_ID{ "LEVEL7"s };
 
-void Level7::clean()
+void Level9::clean()
 {
 	for (int i = 0; i < m_object.size(); i++) {
 		if (m_object[i] != nullptr)
@@ -71,7 +75,7 @@ void Level7::clean()
 	}
 }
 
-void Level7::update()
+void Level9::update()
 {
 	for (int i = 0; i < m_object.size(); i++) {
 		if (!m_exit && m_object[i] != nullptr && m_object.size() < 100)  m_object[i]->update();
@@ -121,20 +125,20 @@ void Level7::update()
 		if (m_enemy[3] != nullptr) {
 			m_player->set_position(ENEMY3_BASE_X + 31, ENEMY3_BASE_Y + 62);
 			//if (m_player->get_strength() > m_enemy[3]->get_strength()) {
-				m_player->change_strength(m_enemy[3]->get_strength(), '/');
-				m_enemy[3]->set_strength_to_one();
-				m_enemy[3]->set_current_frame(100);
+			m_player->change_strength(m_enemy[3]->get_strength(), '/');
+			m_enemy[3]->set_strength_to_one();
+			m_enemy[3]->set_current_frame(100);
 			/*}
 			else m_player->set_strength_to_zero();*/
 		}
 	}
-	else if (is_tower_destroyed(0,2) && mouse_pos->get_x() > ENEMY4_BASE_X && mouse_pos->get_x() < ENEMY4_BASE_X + 130 && mouse_pos->get_y() > ENEMY4_BASE_Y && mouse_pos->get_y() < ENEMY4_BASE_Y + 130 && Input_handle::instance()->get_mouse_state(LEFT) == true) {
+	else if (is_tower_destroyed(0, 2) && mouse_pos->get_x() > ENEMY4_BASE_X && mouse_pos->get_x() < ENEMY4_BASE_X + 130 && mouse_pos->get_y() > ENEMY4_BASE_Y && mouse_pos->get_y() < ENEMY4_BASE_Y + 130 && Input_handle::instance()->get_mouse_state(LEFT) == true) {
 		if (m_enemy[4] != nullptr) {
 			m_player->set_position(ENEMY4_BASE_X + 31, ENEMY4_BASE_Y + 62);
 			if (m_player->get_strength() > m_enemy[4]->get_strength()) {
-			m_player->change_strength(m_enemy[4]->get_strength(), '+');
-			m_enemy[4]->set_strength_to_zero();
-			m_enemy[4]->set_current_frame(100);
+				m_player->change_strength(m_enemy[4]->get_strength(), '+');
+				m_enemy[4]->set_strength_to_zero();
+				m_enemy[4]->set_current_frame(100);
 			}
 			else m_player->set_strength_to_zero();
 		}
@@ -143,9 +147,9 @@ void Level7::update()
 		if (m_enemy[5] != nullptr) {
 			m_player->set_position(ENEMY5_BASE_X + 31, ENEMY5_BASE_Y + 62);
 			//if (m_player->get_strength() > m_enemy[5]->get_strength()) {
-				m_player->change_strength(m_enemy[5]->get_strength(), '*');
-				m_enemy[5]->set_strength_to_one();
-				m_enemy[5]->set_current_frame(100);
+			m_player->change_strength(m_enemy[5]->get_strength(), '*');
+			m_enemy[5]->set_strength_to_one();
+			m_enemy[5]->set_current_frame(100);
 			/*}
 			else m_player->set_strength_to_zero();*/
 		}
@@ -165,9 +169,9 @@ void Level7::update()
 		if (m_enemy[7] != nullptr) {
 			m_player->set_position(ENEMY7_BASE_X + 31, ENEMY7_BASE_Y + 62);
 			if (m_player->get_strength() > m_enemy[7]->get_strength()) {
-			m_player->change_strength(m_enemy[7]->get_strength(), '+');
-			m_enemy[7]->set_strength_to_zero();
-			m_enemy[7]->set_current_frame(100);
+				m_player->change_strength(m_enemy[7]->get_strength(), '+');
+				m_enemy[7]->set_strength_to_zero();
+				m_enemy[7]->set_current_frame(100);
 			}
 			else m_player->set_strength_to_zero();
 		}
@@ -177,7 +181,7 @@ void Level7::update()
 	else if (enemy_count == count_defeated()) game::instance()->get_game_state_manager()->replace(new Victory);
 }
 
-void Level7::render()
+void Level9::render()
 {
 	for (int i = 0; i < m_object.size(); i++) {
 		if (!m_exit && m_object[i] != nullptr)  m_object[i]->draw();
@@ -191,7 +195,8 @@ void Level7::render()
 	else return;
 	if (!m_exit && m_enemy[0] != nullptr) {
 		m_enemy[0]->draw();
-		m_enemy[0]->strength_to_text(ENEMY0_BASE_X + 50, ENEMY0_BASE_Y + 15);
+		m_enemy[0]->strength_to_text(ENEMY0_BASE_X + 70, ENEMY0_BASE_Y + 15);
+		if (m_enemy[1]->get_strength() == 0) Texture_manager::instance()->remove_from_texture_map("minus1"s);
 	}
 	else return;
 	if (!m_exit && m_enemy[1] != nullptr) {
@@ -203,13 +208,13 @@ void Level7::render()
 	else return;
 	if (!m_exit && m_enemy[2] != nullptr) {
 		m_enemy[2]->draw();
-		m_enemy[2]->strength_to_text(ENEMY2_BASE_X + 50, ENEMY2_BASE_Y + 15);
+		m_enemy[2]->strength_to_text(ENEMY2_BASE_X + 70, ENEMY2_BASE_Y + 15);
+		if (m_enemy[2]->get_strength() == 1) Texture_manager::instance()->remove_from_texture_map("div"s);
 	}
 	else return;
 	if (!m_exit && m_enemy[3] != nullptr) {
 		m_enemy[3]->draw();
 		m_enemy[3]->strength_to_text(ENEMY3_BASE_X + 70, ENEMY3_BASE_Y + 15);
-		if (m_enemy[3]->get_strength() == 1) Texture_manager::instance()->remove_from_texture_map("div"s);
 	}
 	else return;
 	if (!m_exit && m_enemy[4] != nullptr) {
@@ -220,7 +225,6 @@ void Level7::render()
 	if (!m_exit && m_enemy[5] != nullptr) {
 		m_enemy[5]->draw();
 		m_enemy[5]->strength_to_text(ENEMY5_BASE_X + 70, ENEMY5_BASE_Y + 15);
-		if (m_enemy[5]->get_strength() == 1) Texture_manager::instance()->remove_from_texture_map("mul"s);
 	}
 	else return;
 	if (!m_exit && m_enemy[6] != nullptr) {
@@ -230,12 +234,19 @@ void Level7::render()
 	else return;
 	if (!m_exit && m_enemy[7] != nullptr) {
 		m_enemy[7]->draw();
-		m_enemy[7]->strength_to_text(ENEMY7_BASE_X + 50, ENEMY7_BASE_Y + 15);
+		m_enemy[7]->strength_to_text(ENEMY7_BASE_X + 70, ENEMY7_BASE_Y + 15);
+		if (m_enemy[7]->get_strength() == 0) Texture_manager::instance()->remove_from_texture_map("minus2"s);
+	}
+	else return;
+	if (!m_exit && m_enemy[8] != nullptr) {
+		m_enemy[8]->draw();
+		m_enemy[8]->strength_to_text(ENEMY8_BASE_X + 70, ENEMY8_BASE_Y + 15);
+		if (m_enemy[8]->get_strength() == 1) Texture_manager::instance()->remove_from_texture_map("div"s);
 	}
 	else return;
 }
 
-bool Level7::on_start()
+bool Level9::on_start()
 {
 	if (!Texture_manager::instance()->load("pic/game_play_background.png"s, "game_play_background"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/replay.png"s, "replay"s, game::instance()->get_renderer())) return false;
@@ -247,9 +258,11 @@ bool Level7::on_start()
 	if (!Texture_manager::instance()->load("pic/buff.png"s, "buff"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/debuff.png"s, "debuff"s, game::instance()->get_renderer())) return false;
 
-	if (!Texture_manager::instance()->create_texture_from_string("/"s, "div"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
+	if (!Texture_manager::instance()->create_texture_from_string("-"s, "minus1"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
+	if (!Texture_manager::instance()->create_texture_from_string("-"s, "minus2"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->create_texture_from_string("x"s, "mul"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->create_texture_from_string("+"s, "plus"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
+	if (!Texture_manager::instance()->create_texture_from_string("/"s, "div"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
 
 	m_object.push_back(new Game_object("game_play_background"s, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT));
 	m_object.push_back(new Menu_button("replay"s, WINDOW_WIDTH * 0.02, WINDOW_HEIGHT * 0.02, 84, 84, replay));
@@ -257,35 +270,40 @@ bool Level7::on_start()
 
 	m_object.push_back(new Game_object("roof"s, PLAYER_BASE_X, PLAYER_BASE_Y, 130, 130));
 	m_object.push_back(new Game_object("base"s, ENEMY0_BASE_X, ENEMY0_BASE_Y, 130, 130));
-	m_object.push_back(new Game_object("base"s, ENEMY1_BASE_X, ENEMY1_BASE_Y, 130, 130));
-	m_object.push_back(new Game_object("roof"s, ENEMY2_BASE_X, ENEMY2_BASE_Y, 130, 130));
+	m_object.push_back(new Game_object("roof"s, ENEMY1_BASE_X, ENEMY1_BASE_Y, 130, 130));
+	m_object.push_back(new Game_object("base"s, ENEMY2_BASE_X, ENEMY2_BASE_Y, 130, 130));
 	m_object.push_back(new Game_object("base"s, ENEMY3_BASE_X, ENEMY3_BASE_Y, 130, 130));
 	m_object.push_back(new Game_object("base"s, ENEMY4_BASE_X, ENEMY4_BASE_Y, 130, 130));
 	m_object.push_back(new Game_object("roof"s, ENEMY5_BASE_X, ENEMY5_BASE_Y, 130, 130));
 	m_object.push_back(new Game_object("base"s, ENEMY6_BASE_X, ENEMY6_BASE_Y, 130, 130));
-	m_object.push_back(new Game_object("roof"s, ENEMY7_BASE_X, ENEMY7_BASE_Y, 130, 130));
+	m_object.push_back(new Game_object("base"s, ENEMY7_BASE_X, ENEMY7_BASE_Y, 130, 130));
+	m_object.push_back(new Game_object("roof"s, ENEMY8_BASE_X, ENEMY8_BASE_Y, 130, 130));
 
+	m_object.push_back(new Game_object("minus1"s, ENEMY0_BASE_X + 50, ENEMY0_BASE_Y + 15, Texture_manager::instance()->get_text_width("minus1"s), Texture_manager::instance()->get_text_height("minus1")));
 	m_object.push_back(new Game_object("plus"s, ENEMY1_BASE_X + 50, ENEMY1_BASE_Y + 15, Texture_manager::instance()->get_text_width("plus"s), Texture_manager::instance()->get_text_height("plus")));
-	m_object.push_back(new Game_object("div"s, ENEMY3_BASE_X + 50, ENEMY3_BASE_Y + 15, Texture_manager::instance()->get_text_width("div"s), Texture_manager::instance()->get_text_height("div")));
-	m_object.push_back(new Game_object("mul"s, ENEMY5_BASE_X + 50, ENEMY5_BASE_Y + 15, Texture_manager::instance()->get_text_width("mul"s), Texture_manager::instance()->get_text_height("mul")));
+	m_object.push_back(new Game_object("div"s, ENEMY2_BASE_X + 50, ENEMY2_BASE_Y + 15, Texture_manager::instance()->get_text_width("div"s), Texture_manager::instance()->get_text_height("div")));
+	m_object.push_back(new Game_object("mul"s, ENEMY6_BASE_X + 50, ENEMY6_BASE_Y + 15, Texture_manager::instance()->get_text_width("mul"s), Texture_manager::instance()->get_text_height("mul")));
+	m_object.push_back(new Game_object("minus2"s, ENEMY7_BASE_X + 50, ENEMY7_BASE_Y + 15, Texture_manager::instance()->get_text_width("minus"s), Texture_manager::instance()->get_text_height("minus")));
+	m_object.push_back(new Game_object("div"s, ENEMY8_BASE_X + 50, ENEMY8_BASE_Y + 15, Texture_manager::instance()->get_text_width("div"s), Texture_manager::instance()->get_text_height("div")));
 
 	m_player = new Player("player_default"s, PLAYER_STRENGTH, PLAYER_BASE_X + 50, PLAYER_BASE_Y + 65, 37, 51);
 
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY0_STRENGTH, ENEMY0_BASE_X + 50, ENEMY0_BASE_Y + 68, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy0
+	m_enemy.push_back(new Enemy("debuff"s, ENEMY0_STRENGTH, ENEMY0_BASE_X + 50, ENEMY0_BASE_Y + 85, 32, 32, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy0
 	m_enemy.push_back(new Enemy("buff"s, ENEMY1_STRENGTH, ENEMY1_BASE_X + 65, ENEMY1_BASE_Y + 40, 19, 76, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy1
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY2_STRENGTH, ENEMY2_BASE_X + 50, ENEMY2_BASE_Y + 68, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy2
-	m_enemy.push_back(new Enemy("debuff"s, ENEMY3_STRENGTH, ENEMY3_BASE_X + 50, ENEMY3_BASE_Y + 85, 32, 32, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy3
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY4_STRENGTH, ENEMY4_BASE_X + 50, ENEMY4_BASE_Y + 68, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy4
-	m_enemy.push_back(new Enemy("buff"s, ENEMY5_STRENGTH, ENEMY5_BASE_X + 65, ENEMY5_BASE_Y + 40, 19, 76, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy5
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY6_STRENGTH, ENEMY6_BASE_X + 50, ENEMY6_BASE_Y + 68, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy6
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY7_STRENGTH, ENEMY7_BASE_X + 50, ENEMY7_BASE_Y + 65, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy7
-	
+	m_enemy.push_back(new Enemy("debuff"s, ENEMY2_STRENGTH, ENEMY2_BASE_X + 50, ENEMY2_BASE_Y + 85, 32, 32, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy2
+	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY3_STRENGTH, ENEMY3_BASE_X + 50, ENEMY3_BASE_Y + 65, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy3
+	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY4_STRENGTH, ENEMY4_BASE_X + 50, ENEMY4_BASE_Y + 65, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy4
+	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY5_STRENGTH, ENEMY5_BASE_X + 50, ENEMY5_BASE_Y + 65, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy5
+	m_enemy.push_back(new Enemy("buff"s, ENEMY6_STRENGTH, ENEMY6_BASE_X + 65, ENEMY6_BASE_Y + 40, 19, 76, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy6
+	m_enemy.push_back(new Enemy("debuff"s, ENEMY7_STRENGTH, ENEMY7_BASE_X + 50, ENEMY7_BASE_Y + 85, 32, 32, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy7
+	m_enemy.push_back(new Enemy("debuff"s, ENEMY8_STRENGTH, ENEMY8_BASE_X + 50, ENEMY8_BASE_Y + 85, 32, 32, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy8
+
 	m_exit = false;
 	return true;
 	return true;
 }
 
-bool Level7::on_exit()
+bool Level9::on_exit()
 {
 	clean();
 	m_object.clear();
@@ -307,17 +325,17 @@ bool Level7::on_exit()
 	return true;
 }
 
-void Level7::replay()
+void Level9::replay()
 {
-	game::instance()->get_game_state_manager()->replace(new Level7);
+	game::instance()->get_game_state_manager()->replace(new Level9);
 }
 
-void Level7::to_level_list()
+void Level9::to_level_list()
 {
 	game::instance()->get_game_state_manager()->replace(new Level_list);
 }
 
-int Level7::count_defeated()
+int Level9::count_defeated()
 {
 	int count{ 0 };
 	for (int i = 0; i < m_enemy.size(); i++) {
@@ -329,7 +347,7 @@ int Level7::count_defeated()
 	return count;
 }
 
-bool Level7::is_tower_destroyed(int start_enemy_index, int end_enemy_index)
+bool Level9::is_tower_destroyed(int start_enemy_index, int end_enemy_index)
 {
 	for (int i = start_enemy_index; i <= end_enemy_index; i++) {
 		if (!m_exit && m_enemy[i] != nullptr) {
