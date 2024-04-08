@@ -27,38 +27,29 @@ constexpr int ENEMY10_STRENGTH{ 368 };
 constexpr int PLAYER_BASE_X{ 296 };
 constexpr int PLAYER_BASE_Y{ 460 };
 
-constexpr int ENEMY0_BASE_X{ 700 };
-constexpr int ENEMY0_BASE_Y{ 460 };
+constexpr int ENEMY0_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 3.5;
+constexpr int ENEMY0_BASE_Y{ PLAYER_BASE_Y };
+constexpr int ENEMY1_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 3.5;
+constexpr int ENEMY1_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT };
+constexpr int ENEMY2_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 3.5;
+constexpr int ENEMY2_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT * 2 };
+constexpr int ENEMY3_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 3.5;
+constexpr int ENEMY3_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT * 3 };
+constexpr int ENEMY4_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 5;
+constexpr int ENEMY4_BASE_Y{ PLAYER_BASE_Y };
+constexpr int ENEMY5_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 5;
+constexpr int ENEMY5_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT };
+constexpr int ENEMY6_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 5;
+constexpr int ENEMY6_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT * 2 };
+constexpr int ENEMY7_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 6.5;
+constexpr int ENEMY7_BASE_Y{ PLAYER_BASE_Y };
+constexpr int ENEMY8_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 6.5;
+constexpr int ENEMY8_BASE_Y{ PLAYER_BASE_Y -BASE_HEIGHT};
+constexpr int ENEMY9_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 6.5;
+constexpr int ENEMY9_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT *2};
 
-constexpr int ENEMY1_BASE_X{ 700 };
-constexpr int ENEMY1_BASE_Y{ 332 };
-
-constexpr int ENEMY2_BASE_X{ 700 };
-constexpr int ENEMY2_BASE_Y{ 212 };
-
-constexpr int ENEMY3_BASE_X{ 700 };
-constexpr int ENEMY3_BASE_Y{ 100 };
-
-constexpr int ENEMY4_BASE_X{ 700 };
-constexpr int ENEMY4_BASE_Y{ 0 };
-
-constexpr int ENEMY5_BASE_X{ 900 };
-constexpr int ENEMY5_BASE_Y{ 460 };
-
-constexpr int ENEMY6_BASE_X{ 900 };
-constexpr int ENEMY6_BASE_Y{ 332 };
-
-constexpr int ENEMY7_BASE_X{ 900 };
-constexpr int ENEMY7_BASE_Y{ 212 };
-
-constexpr int ENEMY8_BASE_X{ 900 };
-constexpr int ENEMY8_BASE_Y{ 100 };
-
-constexpr int ENEMY9_BASE_X{ 900 };
-constexpr int ENEMY9_BASE_Y{ 0 };
-
-constexpr int ENEMY10_BASE_X{ 1100 };
-constexpr int ENEMY10_BASE_Y{ 460 };
+constexpr int ENEMY10_BASE_X= PLAYER_BASE_X+BASE_WIDTH*6.5 ;
+constexpr int ENEMY10_BASE_Y{ PLAYER_BASE_Y-BASE_HEIGHT*3};
 
 using namespace std::string_literals;
 
@@ -301,9 +292,13 @@ bool Level6::on_start()
 	if (!Texture_manager::instance()->load("pic/to_level_list.png"s, "to_level_list"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/base.png"s, "base"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/roof.png"s, "roof"s, game::instance()->get_renderer())) return false;
-	if (!Texture_manager::instance()->load("pic/player_default.png"s, "player_default"s, game::instance()->get_renderer())) return false;
+	if (!Texture_manager::instance()->load("pic/player_idle.png"s, "player_idle"s, game::instance()->get_renderer())) return false;
+	if (!Texture_manager::instance()->load("pic/player_attack.png"s, "player_attack"s, game::instance()->get_renderer())) return false;
+	if (!Texture_manager::instance()->load("pic/player_death.png"s, "player_death"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/enemy_default.png"s, "enemy_default"s, game::instance()->get_renderer())) return false;
-	if (!Texture_manager::instance()->load("pic/multiple_buff.png"s, "multiple_buff"s, game::instance()->get_renderer())) return false;
+	if (!Texture_manager::instance()->load("pic/enemy_death.png"s, "enemy_death"s, game::instance()->get_renderer())) return false;
+	if (!Texture_manager::instance()->load("pic/enemy_attack.png"s, "enemy_attack"s, game::instance()->get_renderer())) return false;
+	if (!Texture_manager::instance()->load("pic/buff.png"s, "buff"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/debuff.png"s, "debuff"s, game::instance()->get_renderer())) return false;
 
 	if (!Texture_manager::instance()->create_texture_from_string("/"s, "div1"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
@@ -314,39 +309,37 @@ bool Level6::on_start()
 	m_object.push_back(new Menu_button("replay"s, WINDOW_WIDTH * 0.02, WINDOW_HEIGHT * 0.02, 84, 84, replay));
 	m_object.push_back(new Menu_button("to_level_list"s, WINDOW_WIDTH * 0.1, WINDOW_HEIGHT * 0.02, 84, 84, to_level_list));
 
-	m_object.push_back(new Game_object("roof"s, PLAYER_BASE_X, PLAYER_BASE_Y, 130, 130));//player' s base
-	m_object.push_back(new Game_object("base"s, ENEMY0_BASE_X, ENEMY0_BASE_Y, 130, 130));//enemy0's base, tower 1
-	m_object.push_back(new Game_object("base"s, ENEMY1_BASE_X, ENEMY1_BASE_Y, 130, 130));//enemy1's base, tower 1
-	m_object.push_back(new Game_object("base"s, ENEMY2_BASE_X, ENEMY2_BASE_Y, 130, 130));//enemy2's base, tower 1
-	m_object.push_back(new Game_object("base"s, ENEMY3_BASE_X, ENEMY3_BASE_Y, 130, 130));//enemy3's base, tower 1
-	m_object.push_back(new Game_object("roof"s, ENEMY4_BASE_X, ENEMY4_BASE_Y, 130, 130));//enemy4's base, tower 1
-	m_object.push_back(new Game_object("base"s, ENEMY5_BASE_X, ENEMY5_BASE_Y, 130, 130));//enemy5's base, tower 2
-	m_object.push_back(new Game_object("base"s, ENEMY6_BASE_X, ENEMY6_BASE_Y, 130, 130));//enemy6's base, tower 2
-	m_object.push_back(new Game_object("base"s, ENEMY7_BASE_X, ENEMY7_BASE_Y, 130, 130));//enemy7's base, tower 2
-	m_object.push_back(new Game_object("base"s, ENEMY8_BASE_X, ENEMY8_BASE_Y, 130, 130));//enemy8's base, tower 2
-	m_object.push_back(new Game_object("roof"s, ENEMY9_BASE_X, ENEMY9_BASE_Y, 130, 130));//enemy9's base, tower 2
-	m_object.push_back(new Game_object("roof"s, ENEMY10_BASE_X, ENEMY10_BASE_Y, 130, 130));//enemy10's base, tower 3
+	m_object.push_back(new Game_object("roof"s, PLAYER_BASE_X, PLAYER_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//player' s base
+	m_object.push_back(new Game_object("base"s, ENEMY0_BASE_X, ENEMY0_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy0's base
+	m_object.push_back(new Game_object("base"s, ENEMY1_BASE_X, ENEMY1_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy1's base
+	m_object.push_back(new Game_object("base"s, ENEMY2_BASE_X, ENEMY2_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy2's base
+	m_object.push_back(new Game_object("base"s, ENEMY3_BASE_X, ENEMY3_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy3's base
+	m_object.push_back(new Game_object("base"s, ENEMY4_BASE_X, ENEMY4_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy4's base
+	m_object.push_back(new Game_object("base"s, ENEMY5_BASE_X, ENEMY5_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy5's base
+	m_object.push_back(new Game_object("base"s, ENEMY6_BASE_X, ENEMY6_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy6's base
+	m_object.push_back(new Game_object("base"s, ENEMY7_BASE_X, ENEMY7_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy7's base
+	m_object.push_back(new Game_object("base"s, ENEMY8_BASE_X, ENEMY8_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy8's base
+	m_object.push_back(new Game_object("base"s, ENEMY9_BASE_X, ENEMY9_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy9's base
+	m_object.push_back(new Game_object("base"s, ENEMY10_BASE_X, ENEMY10_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy10's base
 
 	m_object.push_back(new Game_object("div1"s, ENEMY4_BASE_X + 50, ENEMY4_BASE_Y + 15, Texture_manager::instance()->get_text_width("div1"s),Texture_manager::instance()->get_text_height("div1")));
 	m_object.push_back(new Game_object("div2"s, ENEMY7_BASE_X + 50, ENEMY7_BASE_Y + 15, Texture_manager::instance()->get_text_width("div2"s), Texture_manager::instance()->get_text_height("div2")));
 	m_object.push_back(new Game_object("plus"s, ENEMY1_BASE_X + 50, ENEMY1_BASE_Y + 15, Texture_manager::instance()->get_text_width("plus"s), Texture_manager::instance()->get_text_height("plus")));
 
-	m_player = new Player("player_default"s, PLAYER_STRENGTH, PLAYER_BASE_X + 50, PLAYER_BASE_Y + 65, 37, 51);//player
+	m_player = new Player("player_idle"s, PLAYER_STRENGTH, PLAYER_BASE_X + 0.5 * (BASE_WIDTH - PLAYER_WIDTH), PLAYER_BASE_Y + PLAYER_Y_SCALE, PLAYER_WIDTH, PLAYER_HEIGHT);//player
 
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY0_STRENGTH, ENEMY0_BASE_X + 50, ENEMY0_BASE_Y + 68, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy0
-	m_enemy.push_back(new Enemy("multiple_buff"s, ENEMY1_STRENGTH, ENEMY1_BASE_X + 65, ENEMY1_BASE_Y + 40, 19, 76, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy1
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY2_STRENGTH, ENEMY2_BASE_X + 50, ENEMY2_BASE_Y + 68, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy2
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY3_STRENGTH, ENEMY3_BASE_X + 50, ENEMY3_BASE_Y + 68, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy3
-	m_enemy.push_back(new Enemy("debuff"s, ENEMY4_STRENGTH, ENEMY4_BASE_X + 50, ENEMY4_BASE_Y + 72, 32, 32, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy4
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY5_STRENGTH, ENEMY5_BASE_X + 50, ENEMY5_BASE_Y + 68, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy5
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY6_STRENGTH, ENEMY6_BASE_X + 50, ENEMY6_BASE_Y + 68, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy6
-	m_enemy.push_back(new Enemy("debuff"s, ENEMY7_STRENGTH, ENEMY7_BASE_X + 50, ENEMY7_BASE_Y + 85, 32, 32, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy7
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY8_STRENGTH, ENEMY8_BASE_X + 50, ENEMY8_BASE_Y + 68, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy8
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY9_STRENGTH, ENEMY9_BASE_X + 50, ENEMY9_BASE_Y + 55, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy9
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY10_STRENGTH, ENEMY10_BASE_X + 50, ENEMY10_BASE_Y + 68, 80, 64, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy10
-
+	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY0_STRENGTH, ENEMY0_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY0_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy0
+	m_enemy.push_back(new Enemy("buff"s, ENEMY1_STRENGTH, ENEMY1_BASE_X + 0.5 * (BASE_WIDTH - BUFF_WIDTH), ENEMY1_BASE_Y + BUFF_Y_SCALE, BUFF_WIDTH, BUFF_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy1
+	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY2_STRENGTH, ENEMY2_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY2_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy2
+	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY3_STRENGTH, ENEMY3_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY3_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy3
+	m_enemy.push_back(new Enemy("debuff"s, ENEMY4_STRENGTH, ENEMY4_BASE_X + 0.5 * (BASE_WIDTH - DEBUFF_WIDTH), ENEMY4_BASE_Y + DEBUFF_Y_SCALE, DEBUFF_WIDTH, DEBUFF_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy4
+	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY5_STRENGTH, ENEMY5_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY5_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy5
+	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY6_STRENGTH, ENEMY6_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY6_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy6
+	m_enemy.push_back(new Enemy("debuff"s, ENEMY7_STRENGTH, ENEMY7_BASE_X + 0.5 * (BASE_WIDTH - DEBUFF_WIDTH), ENEMY7_BASE_Y + DEBUFF_Y_SCALE, DEBUFF_WIDTH, DEBUFF_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy7
+	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY8_STRENGTH, ENEMY8_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY8_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy8
+	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY9_STRENGTH, ENEMY9_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY9_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy9
+	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY10_STRENGTH, ENEMY10_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY10_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy10
 	m_exit = false;
-	return true;
 	return true;
 }
 
@@ -362,7 +355,7 @@ bool Level6::on_exit()
 	Texture_manager::instance()->remove_from_texture_map("roof"s);
 	Texture_manager::instance()->remove_from_texture_map("player_default"s);
 	Texture_manager::instance()->remove_from_texture_map("enemy_default"s);
-	Texture_manager::instance()->remove_from_texture_map("multiple_buff"s);
+	Texture_manager::instance()->remove_from_texture_map("buff"s);
 	Texture_manager::instance()->remove_from_texture_map("debuff"s);
 	Texture_manager::instance()->remove_from_texture_map("div1"s);
 	Texture_manager::instance()->remove_from_texture_map("div2"s);
