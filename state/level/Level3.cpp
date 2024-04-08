@@ -252,7 +252,6 @@ void Level3::render()
 		m_enemy[1]->draw();
 		m_enemy[1]->strength_to_text(ENEMY1_BASE_X + 70, ENEMY1_BASE_Y + 15);
 		if (m_enemy[1]->get_strength() == 1) Texture_manager::instance()->remove_from_texture_map("mul"s);
-
 	}
 	if (!m_exit && m_enemy[2] != nullptr) {
 		m_enemy[2]->draw();
