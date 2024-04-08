@@ -1,4 +1,6 @@
+Entered Level 8
+Exited Level 8
 Entered Level 7
-Entered Victory
 Exited Level 7
+Entered Level 6
 Game cleaned up successfully
