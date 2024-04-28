@@ -26,6 +26,8 @@ public:
 	void set_strength_to_zero() { m_strength = 0; }
 	void set_attack(bool attack) { is_attack = attack; }
 	bool get_attack() const { return is_attack; }
+	double get_x() const { return m_position.get_x(); }
+	double get_y() const { return m_position.get_y(); }
 private:
 	int m_strength{};
 	bool is_attack{ false };

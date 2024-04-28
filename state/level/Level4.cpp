@@ -178,7 +178,7 @@ void Level4::render()
 	if (!m_exit && m_player != nullptr)
 	{
 		m_player->draw();
-		m_player->strength_to_text(PLAYER_BASE_X + 50, PLAYER_BASE_Y + 15);
+		m_player->strength_to_text(m_player->get_x() + 15, m_player->get_y() - 53);
 		if (m_player->get_strength() != 0 && !m_player->get_attack()) {
 			m_player->set_current_frame((int)((SDL_GetTicks() / 100) % (PLAYER_IDLE_MAX_FRAME - 1)));
 		}
