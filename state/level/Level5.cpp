@@ -18,7 +18,7 @@ constexpr int ENEMY3_STRENGTH{ 24 };
 constexpr int ENEMY4_STRENGTH{ 16 };
 constexpr int ENEMY5_STRENGTH{ 5 };//*
 constexpr int ENEMY6_STRENGTH{ 2 };// /
-constexpr int ENEMY7_STRENGTH{ 5 };
+constexpr int ENEMY7_STRENGTH{ 25 };
 constexpr int ENEMY8_STRENGTH{ 32 };
 constexpr int ENEMY9_STRENGTH{ 499 };
 
@@ -272,26 +272,23 @@ void Level5::render()
 	else return;
 	if (!m_exit && m_enemy[0] != nullptr) {
 		m_enemy[0]->draw();
-		m_enemy[0]->strength_to_text(ENEMY0_BASE_X + 70, ENEMY0_BASE_Y + 15);
-		if (m_enemy[0]->get_strength() == 0) Texture_manager::instance()->remove_from_texture_map("minus"s);
+		m_enemy[0]->strength_to_text(ENEMY0_BASE_X + 50, ENEMY0_BASE_Y + 15,"-"s,true);
 	}
 	else return;
 	if (!m_exit && m_enemy[1] != nullptr) {
 		m_enemy[1]->draw();
-		m_enemy[1]->strength_to_text(ENEMY1_BASE_X + 70, ENEMY1_BASE_Y + 15);
-		if (m_enemy[1]->get_strength() == 0) Texture_manager::instance()->remove_from_texture_map("plus"s);
+		m_enemy[1]->strength_to_text(ENEMY1_BASE_X + 50, ENEMY1_BASE_Y + 15,"+"s,true);
 
 	}
 	else return;
 	if (!m_exit && m_enemy[2] != nullptr) {
 		m_enemy[2]->draw();
-		m_enemy[2]->strength_to_text(ENEMY2_BASE_X + 70, ENEMY2_BASE_Y + 15);
-		if (m_enemy[2]->get_strength() == 1) Texture_manager::instance()->remove_from_texture_map("mul1"s);
+		m_enemy[2]->strength_to_text(ENEMY2_BASE_X + 50, ENEMY2_BASE_Y + 15,"x"s,true);
 	}
 	else return;
 	if (!m_exit && m_enemy[3] != nullptr) {
 		m_enemy[3]->draw();
-		m_enemy[3]->strength_to_text(ENEMY3_BASE_X + 50, ENEMY3_BASE_Y + 15);
+		m_enemy[3]->strength_to_text(ENEMY3_BASE_X + 50, ENEMY3_BASE_Y + 15,"+"s);
 		if (m_enemy[3]->get_strength() != 0 && !m_enemy[3]->get_attack()) {
 			m_enemy[3]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME - 1)));
 		}
@@ -320,7 +317,7 @@ void Level5::render()
 	else return;
 	if (!m_exit && m_enemy[4] != nullptr) {
 		m_enemy[4]->draw();
-		m_enemy[4]->strength_to_text(ENEMY4_BASE_X + 50, ENEMY4_BASE_Y + 15);
+		m_enemy[4]->strength_to_text(ENEMY4_BASE_X + 50, ENEMY4_BASE_Y + 15,"+"s);
 		if (m_enemy[4]->get_strength() != 0 && !m_enemy[4]->get_attack()) {
 			m_enemy[4]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME - 1)));
 		}
@@ -349,19 +346,17 @@ void Level5::render()
 	else return;
 	if (!m_exit && m_enemy[5] != nullptr) {
 		m_enemy[5]->draw();
-		m_enemy[5]->strength_to_text(ENEMY5_BASE_X + 70, ENEMY5_BASE_Y + 15);
-		if (m_enemy[5]->get_strength() == 1) Texture_manager::instance()->remove_from_texture_map("mul2"s);
+		m_enemy[5]->strength_to_text(ENEMY5_BASE_X + 50, ENEMY5_BASE_Y + 15,"x"s,true);
 	}
 	else return;
 	if (!m_exit && m_enemy[6] != nullptr) {
 		m_enemy[6]->draw();
-		m_enemy[6]->strength_to_text(ENEMY6_BASE_X + 70, ENEMY6_BASE_Y + 15);
-		if (m_enemy[6]->get_strength() == 1) Texture_manager::instance()->remove_from_texture_map("div"s);
+		m_enemy[6]->strength_to_text(ENEMY6_BASE_X + 50, ENEMY6_BASE_Y + 15,"/"s, true);
 	}
 	else return;
 	if (!m_exit && m_enemy[7] != nullptr) {
 		m_enemy[7]->draw();
-		m_enemy[7]->strength_to_text(ENEMY7_BASE_X + 50, ENEMY7_BASE_Y + 15);
+		m_enemy[7]->strength_to_text(ENEMY7_BASE_X + 50, ENEMY7_BASE_Y + 15,"+"s);
 		if (m_enemy[7]->get_strength() != 0 && !m_enemy[7]->get_attack()) {
 			m_enemy[7]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME - 1)));
 		}
@@ -390,7 +385,7 @@ void Level5::render()
 	else return;
 	if (!m_exit && m_enemy[8] != nullptr) {
 		m_enemy[8]->draw();
-		m_enemy[8]->strength_to_text(ENEMY8_BASE_X + 50, ENEMY8_BASE_Y + 15);
+		m_enemy[8]->strength_to_text(ENEMY8_BASE_X + 50, ENEMY8_BASE_Y + 15,"+"s);
 		if (m_enemy[8]->get_strength() != 0 && !m_enemy[8]->get_attack()) {
 			m_enemy[8]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME - 1)));
 		}
@@ -419,7 +414,7 @@ void Level5::render()
 	else return;
 	if (!m_exit && m_enemy[9] != nullptr) {
 		m_enemy[9]->draw();
-		m_enemy[9]->strength_to_text(ENEMY9_BASE_X + 50, ENEMY9_BASE_Y + 15);
+		m_enemy[9]->strength_to_text(ENEMY9_BASE_X + 50, ENEMY9_BASE_Y + 15,"+"s);
 		if (m_enemy[9]->get_strength() != 0 && !m_enemy[9]->get_attack()) {
 			m_enemy[9]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME - 1)));
 		}
@@ -463,11 +458,11 @@ bool Level5::on_start()
 	if (!Texture_manager::instance()->load("pic/buff.png"s, "buff"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/debuff.png"s, "debuff"s, game::instance()->get_renderer())) return false;
 
-	if (!Texture_manager::instance()->create_texture_from_string("/"s, "div"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
-	if (!Texture_manager::instance()->create_texture_from_string("x"s, "mul1"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
-	if (!Texture_manager::instance()->create_texture_from_string("x"s, "mul2"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
-	if (!Texture_manager::instance()->create_texture_from_string("+"s, "plus"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
-	if (!Texture_manager::instance()->create_texture_from_string("-"s, "minus"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
+	//if (!Texture_manager::instance()->create_texture_from_string("/"s, "div"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
+	//if (!Texture_manager::instance()->create_texture_from_string("x"s, "mul1"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
+	//if (!Texture_manager::instance()->create_texture_from_string("x"s, "mul2"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
+	//if (!Texture_manager::instance()->create_texture_from_string("+"s, "plus"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
+	//if (!Texture_manager::instance()->create_texture_from_string("-"s, "minus"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
 
 	m_object.push_back(new Game_object("game_play_background"s, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT));
 	m_object.push_back(new Menu_button("replay"s, WINDOW_WIDTH * 0.02, WINDOW_HEIGHT * 0.02, REPLAY_WIDTH, REPLAY_HEIGHT, replay));
@@ -485,11 +480,11 @@ bool Level5::on_start()
 	m_object.push_back(new Game_object("base"s, ENEMY8_BASE_X, ENEMY8_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy8's base
 	m_object.push_back(new Game_object("base"s, ENEMY9_BASE_X, ENEMY9_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy9's base
 
-	m_object.push_back(new Game_object("minus"s, ENEMY0_BASE_X + 50, ENEMY0_BASE_Y + 15, Texture_manager::instance()->get_text_width("minus"s), Texture_manager::instance()->get_text_height("minus"s)));
-	m_object.push_back(new Game_object("plus"s, ENEMY1_BASE_X + 50, ENEMY1_BASE_Y + 15, Texture_manager::instance()->get_text_width("plus"s), Texture_manager::instance()->get_text_height("plus"s)));
-	m_object.push_back(new Game_object("mul1"s, ENEMY2_BASE_X + 50, ENEMY2_BASE_Y + 15, Texture_manager::instance()->get_text_width("mul1"s), Texture_manager::instance()->get_text_height("mul1"s)));
-	m_object.push_back(new Game_object("mul2"s, ENEMY5_BASE_X + 50, ENEMY5_BASE_Y + 15, Texture_manager::instance()->get_text_width("mul2"s), Texture_manager::instance()->get_text_height("mul2"s)));
-	m_object.push_back(new Game_object("div"s, ENEMY6_BASE_X + 50, ENEMY6_BASE_Y + 15, Texture_manager::instance()->get_text_width("div"s), Texture_manager::instance()->get_text_height("div"s)));
+	//m_object.push_back(new Game_object("minus"s, ENEMY0_BASE_X + 50, ENEMY0_BASE_Y + 15, Texture_manager::instance()->get_text_width("minus"s), Texture_manager::instance()->get_text_height("minus"s)));
+	//m_object.push_back(new Game_object("plus"s, ENEMY1_BASE_X + 50, ENEMY1_BASE_Y + 15, Texture_manager::instance()->get_text_width("plus"s), Texture_manager::instance()->get_text_height("plus"s)));
+	//m_object.push_back(new Game_object("mul1"s, ENEMY2_BASE_X + 50, ENEMY2_BASE_Y + 15, Texture_manager::instance()->get_text_width("mul1"s), Texture_manager::instance()->get_text_height("mul1"s)));
+	//m_object.push_back(new Game_object("mul2"s, ENEMY5_BASE_X + 50, ENEMY5_BASE_Y + 15, Texture_manager::instance()->get_text_width("mul2"s), Texture_manager::instance()->get_text_height("mul2"s)));
+	//m_object.push_back(new Game_object("div"s, ENEMY6_BASE_X + 50, ENEMY6_BASE_Y + 15, Texture_manager::instance()->get_text_width("div"s), Texture_manager::instance()->get_text_height("div"s)));
 
 	m_player = new Player("player_idle"s, PLAYER_STRENGTH, PLAYER_BASE_X + 0.5 * (BASE_WIDTH - PLAYER_WIDTH), PLAYER_BASE_Y + PLAYER_Y_SCALE, PLAYER_WIDTH, PLAYER_HEIGHT);//player
 
@@ -526,11 +521,11 @@ bool Level5::on_exit()
 	Texture_manager::instance()->remove_from_texture_map("enemy_attack"s);
 	Texture_manager::instance()->remove_from_texture_map("buff"s);
 	Texture_manager::instance()->remove_from_texture_map("debuff"s);
-	Texture_manager::instance()->remove_from_texture_map("div"s);
-	Texture_manager::instance()->remove_from_texture_map("mul1"s);
-	Texture_manager::instance()->remove_from_texture_map("mul2"s);
-	Texture_manager::instance()->remove_from_texture_map("plus"s);
-	Texture_manager::instance()->remove_from_texture_map("minus"s);
+	//Texture_manager::instance()->remove_from_texture_map("div"s);
+	//Texture_manager::instance()->remove_from_texture_map("mul1"s);
+	//Texture_manager::instance()->remove_from_texture_map("mul2"s);
+	//Texture_manager::instance()->remove_from_texture_map("plus"s);
+	//Texture_manager::instance()->remove_from_texture_map("minus"s);
 
 
 	m_exit = true;

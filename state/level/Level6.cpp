@@ -13,16 +13,16 @@
 constexpr int PLAYER_STRENGTH{ 10 };
 
 constexpr int ENEMY0_STRENGTH{ 15 };
-constexpr int ENEMY1_STRENGTH{ 50 };
+constexpr int ENEMY1_STRENGTH{ 2 };
 constexpr int ENEMY2_STRENGTH{ 7 };
 constexpr int ENEMY3_STRENGTH{ 24 };
 constexpr int ENEMY4_STRENGTH{ 2 };
-constexpr int ENEMY5_STRENGTH{ 200 };
-constexpr int ENEMY6_STRENGTH{ 102 };
-constexpr int ENEMY7_STRENGTH{ 2 };
-constexpr int ENEMY8_STRENGTH{ 183 };
-constexpr int ENEMY9_STRENGTH{ 52 };
-constexpr int ENEMY10_STRENGTH{ 368 };
+constexpr int ENEMY5_STRENGTH{ 27 };
+constexpr int ENEMY6_STRENGTH{ 50 };
+constexpr int ENEMY7_STRENGTH{ 50 };
+constexpr int ENEMY8_STRENGTH{ 154 };
+constexpr int ENEMY9_STRENGTH{ 2 };
+constexpr int ENEMY10_STRENGTH{ 300 };
 
 constexpr int PLAYER_BASE_X{ 296 };
 constexpr int PLAYER_BASE_Y{ 460 };
@@ -45,11 +45,10 @@ constexpr int ENEMY7_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 6.5;
 constexpr int ENEMY7_BASE_Y{ PLAYER_BASE_Y };
 constexpr int ENEMY8_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 6.5;
 constexpr int ENEMY8_BASE_Y{ PLAYER_BASE_Y -BASE_HEIGHT};
-constexpr int ENEMY9_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 6.5;
-constexpr int ENEMY9_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT *2};
-
+constexpr int ENEMY9_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 5;
+constexpr int ENEMY9_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT * 3};
 constexpr int ENEMY10_BASE_X= PLAYER_BASE_X+BASE_WIDTH*6.5 ;
-constexpr int ENEMY10_BASE_Y{ PLAYER_BASE_Y-BASE_HEIGHT*3};
+constexpr int ENEMY10_BASE_Y{ PLAYER_BASE_Y-BASE_HEIGHT*2};
 
 using namespace std::string_literals;
 
@@ -108,8 +107,8 @@ void Level6::update()
 	else if (mouse_pos->get_x() > ENEMY1_BASE_X && mouse_pos->get_x() < ENEMY1_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY1_BASE_Y && mouse_pos->get_y() < ENEMY1_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_player->get_strength() > 0 && m_enemy[1]->get_strength() > 0) {
 		if (m_enemy[1] != nullptr) {
 			m_player->set_position(ENEMY1_BASE_X + 0.25 * (BASE_WIDTH - PLAYER_WIDTH), ENEMY1_BASE_Y + ENEMY_Y_SCALE);
-			m_player->change_strength(m_enemy[1]->get_strength(), '+');
-			m_enemy[1]->set_strength_to_zero();
+			m_player->change_strength(m_enemy[1]->get_strength(), '/');
+			m_enemy[1]->set_strength_to_one();
 			m_enemy[1]->set_current_frame(100);
 		}
 	}
@@ -152,7 +151,7 @@ void Level6::update()
 	else if (is_tower_destroyed(0, 3) && mouse_pos->get_x() > ENEMY4_BASE_X && mouse_pos->get_x() < ENEMY4_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY4_BASE_Y && mouse_pos->get_y() < ENEMY4_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_player->get_strength() > 0 && m_enemy[4]->get_strength() > 1) {
 		if (m_enemy[4] != nullptr) {
 			m_player->set_position(ENEMY4_BASE_X + 0.25 * (BASE_WIDTH - PLAYER_WIDTH), ENEMY4_BASE_Y + ENEMY_Y_SCALE);
-			m_player->change_strength(m_enemy[4]->get_strength(), '/');
+			m_player->change_strength(m_enemy[4]->get_strength(), '*');
 			m_enemy[4]->set_strength_to_one();
 			m_enemy[4]->set_current_frame(100);
 		}
@@ -196,8 +195,8 @@ void Level6::update()
 	else if (is_tower_destroyed(0, 6) && mouse_pos->get_x() > ENEMY7_BASE_X && mouse_pos->get_x() < ENEMY7_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY7_BASE_Y && mouse_pos->get_y() < ENEMY7_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_player->get_strength() > 0 && m_enemy[7]->get_strength() > 1) {
 		if (m_enemy[7] != nullptr) {
 			m_player->set_position(ENEMY7_BASE_X + 0.25 * (BASE_WIDTH - PLAYER_WIDTH), ENEMY7_BASE_Y + ENEMY_Y_SCALE);
-			m_player->change_strength(m_enemy[7]->get_strength(), '/');
-			m_enemy[7]->set_strength_to_one();
+			m_player->change_strength(m_enemy[7]->get_strength(), '+');
+			m_enemy[7]->set_strength_to_zero();
 			m_enemy[7]->set_current_frame(100);
 		}
 	}
@@ -219,22 +218,12 @@ void Level6::update()
 			}
 		}
 	}
-	else if (is_tower_destroyed(0, 6) && mouse_pos->get_x() > ENEMY9_BASE_X && mouse_pos->get_x() < ENEMY9_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY9_BASE_Y && mouse_pos->get_y() < ENEMY9_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_player->get_strength() > 0 && m_enemy[9]->get_strength() > 0) {
+	else if (is_tower_destroyed(0, 3) && mouse_pos->get_x() > ENEMY9_BASE_X && mouse_pos->get_x() < ENEMY9_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY9_BASE_Y && mouse_pos->get_y() < ENEMY9_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_player->get_strength() > 0 && m_enemy[9]->get_strength() > 0) {
 		if (m_enemy[9] != nullptr) {
 			m_player->set_position(ENEMY9_BASE_X + 0.25 * (BASE_WIDTH - PLAYER_WIDTH), ENEMY9_BASE_Y + ENEMY_Y_SCALE);
-			if (m_player->get_strength() > m_enemy[9]->get_strength()) {
-				m_player->change_strength(m_enemy[9]->get_strength(), '+');
-				m_enemy[9]->set_strength_to_zero();
-				m_enemy[9]->change_texture("enemy_death"s, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL);
-				m_player->change_texture("player_attack"s, PLAYER_WIDTH, PLAYER_HEIGHT, SDL_FLIP_NONE);
-				m_player->set_attack(true);
-			}
-			else {
-				m_player->set_strength_to_zero();
-				m_player->change_texture("player_death"s, PLAYER_WIDTH, PLAYER_HEIGHT, SDL_FLIP_NONE);
-				m_enemy[9]->change_texture("enemy_attack"s, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL);
-				m_enemy[9]->set_attack(true);
-			}
+			m_player->change_strength(m_enemy[9]->get_strength(), '/');
+			m_enemy[9]->set_strength_to_one();
+			m_enemy[9]->set_current_frame(100);
 		}
 	}
 	else if (is_tower_destroyed(0, 6) && mouse_pos->get_x() > ENEMY10_BASE_X && mouse_pos->get_x() < ENEMY10_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY10_BASE_Y && mouse_pos->get_y() < ENEMY10_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_player->get_strength() > 0 && m_enemy[10]->get_strength() > 0) {
@@ -309,7 +298,7 @@ void Level6::render()
 	else return;
 	if (!m_exit && m_enemy[0] != nullptr) {
 		m_enemy[0]->draw();
-		m_enemy[0]->strength_to_text(ENEMY0_BASE_X + 50, ENEMY0_BASE_Y + 15);
+		m_enemy[0]->strength_to_text(ENEMY0_BASE_X + 50, ENEMY0_BASE_Y + 15,"+"s);
 		if (m_enemy[0]->get_strength() != 0 && !m_enemy[0]->get_attack()) {
 			m_enemy[0]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME - 1)));
 		}
@@ -338,14 +327,12 @@ void Level6::render()
 	else return;
 	if (!m_exit && m_enemy[1] != nullptr) {
 		m_enemy[1]->draw();
-		m_enemy[1]->strength_to_text(ENEMY1_BASE_X + 70, ENEMY1_BASE_Y + 15);
-		if (m_enemy[1]->get_strength() == 0) Texture_manager::instance()->remove_from_texture_map("plus"s);
-
+		m_enemy[1]->strength_to_text(ENEMY1_BASE_X + 50, ENEMY1_BASE_Y + 15,"/"s,true);
 	}
 	else return;
 	if (!m_exit && m_enemy[2] != nullptr) {
 		m_enemy[2]->draw();
-		m_enemy[2]->strength_to_text(ENEMY2_BASE_X + 50, ENEMY2_BASE_Y + 15);
+		m_enemy[2]->strength_to_text(ENEMY2_BASE_X + 50, ENEMY2_BASE_Y + 15,"+");
 		if (m_enemy[2]->get_strength() != 0 && !m_enemy[2]->get_attack()) {
 			m_enemy[2]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME - 1)));
 		}
@@ -374,7 +361,7 @@ void Level6::render()
 	else return;
 	if (!m_exit && m_enemy[3] != nullptr) {
 		m_enemy[3]->draw();
-		m_enemy[3]->strength_to_text(ENEMY3_BASE_X + 50, ENEMY3_BASE_Y + 15);
+		m_enemy[3]->strength_to_text(ENEMY3_BASE_X + 50, ENEMY3_BASE_Y + 15,"+"s);
 		if (m_enemy[3]->get_strength() != 0 && !m_enemy[3]->get_attack()) {
 			m_enemy[3]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME - 1)));
 		}
@@ -403,13 +390,12 @@ void Level6::render()
 	else return;
 	if (!m_exit && m_enemy[4] != nullptr) {
 		m_enemy[4]->draw();
-		m_enemy[4]->strength_to_text(ENEMY4_BASE_X + 70, ENEMY4_BASE_Y + 15);
-		if (m_enemy[4]->get_strength() == 1) Texture_manager::instance()->remove_from_texture_map("div1"s);
+		m_enemy[4]->strength_to_text(ENEMY4_BASE_X + 50, ENEMY4_BASE_Y + 15,"x"s,true);
 	}
 	else return;
 	if (!m_exit && m_enemy[5] != nullptr) {
 		m_enemy[5]->draw();
-		m_enemy[5]->strength_to_text(ENEMY5_BASE_X + 50, ENEMY5_BASE_Y + 15);
+		m_enemy[5]->strength_to_text(ENEMY5_BASE_X + 50, ENEMY5_BASE_Y + 15,"+"s);
 		if (m_enemy[5]->get_strength() != 0 && !m_enemy[5]->get_attack()) {
 			m_enemy[5]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME - 1)));
 		}
@@ -438,7 +424,7 @@ void Level6::render()
 	else return;
 	if (!m_exit && m_enemy[6] != nullptr) {
 		m_enemy[6]->draw();
-		m_enemy[6]->strength_to_text(ENEMY6_BASE_X + 50, ENEMY6_BASE_Y + 15);
+		m_enemy[6]->strength_to_text(ENEMY6_BASE_X + 50, ENEMY6_BASE_Y + 15,"+"s);
 		if (m_enemy[6]->get_strength() != 0 && !m_enemy[6]->get_attack()) {
 			m_enemy[6]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME - 1)));
 		}
@@ -467,13 +453,12 @@ void Level6::render()
 	else return;
 	if (!m_exit && m_enemy[7] != nullptr) {
 		m_enemy[7]->draw();
-		m_enemy[7]->strength_to_text(ENEMY7_BASE_X + 70, ENEMY7_BASE_Y + 15);
-		if (m_enemy[7]->get_strength() == 1) Texture_manager::instance()->remove_from_texture_map("div2"s);
+		m_enemy[7]->strength_to_text(ENEMY7_BASE_X + 50, ENEMY7_BASE_Y + 15,"+"s,true);
 	}
 	else return;
 	if (!m_exit && m_enemy[8] != nullptr) {
 		m_enemy[8]->draw();
-		m_enemy[8]->strength_to_text(ENEMY8_BASE_X + 50, ENEMY8_BASE_Y + 15);
+		m_enemy[8]->strength_to_text(ENEMY8_BASE_X + 50, ENEMY8_BASE_Y + 15,"+"s);
 		if (m_enemy[8]->get_strength() != 0 && !m_enemy[8]->get_attack()) {
 			m_enemy[8]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME - 1)));
 		}
@@ -502,36 +487,12 @@ void Level6::render()
 	else return;
 	if (!m_exit && m_enemy[9] != nullptr) {
 		m_enemy[9]->draw();
-		m_enemy[9]->strength_to_text(ENEMY9_BASE_X + 50, ENEMY9_BASE_Y + 15);
-		if (m_enemy[9]->get_strength() != 0 && !m_enemy[9]->get_attack()) {
-			m_enemy[9]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME - 1)));
-		}
-		if (m_enemy[9]->get_strength() == 0 && m_enemy[9]->get_current_frame() < ENEMY_DEATH_MAX_FRAME - 1 && !m_player->get_attack()) {
-			int frame = m_enemy[9]->get_current_frame();
-			frame_time = SDL_GetTicks() - start_time;
-			start_time = SDL_GetTicks();
-			if (frame_time > 100) {
-				frame++;
-				m_enemy[9]->set_current_frame(frame);
-				SDL_Delay(100);
-			}
-		}
-		else if (m_enemy[9]->get_attack() && m_enemy[9]->get_current_frame() < ENEMY_ATTACK_MAX_FRAME - 1) {
-			int frame = m_enemy[9]->get_current_frame();
-			frame_time = SDL_GetTicks() - start_time;
-			start_time = SDL_GetTicks();
-			if (frame_time > 100) {
-				frame++;
-				m_enemy[9]->set_current_frame(frame);
-				SDL_Delay(100);
-			}
-		}
-		else m_enemy[9]->set_attack(false);
+		m_enemy[9]->strength_to_text(ENEMY9_BASE_X + 50, ENEMY9_BASE_Y + 15, "/"s, true);
 	}
 	else return;
 	if (!m_exit && m_enemy[10] != nullptr) {
 		m_enemy[10]->draw();
-		m_enemy[10]->strength_to_text(ENEMY10_BASE_X + 50, ENEMY10_BASE_Y + 15);
+		m_enemy[10]->strength_to_text(ENEMY10_BASE_X + 50, ENEMY10_BASE_Y + 15,"+"s);
 		if (m_enemy[10]->get_strength() != 0 && !m_enemy[10]->get_attack()) {
 			m_enemy[10]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME - 1)));
 		}
@@ -576,9 +537,9 @@ bool Level6::on_start()
 	if (!Texture_manager::instance()->load("pic/buff.png"s, "buff"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/debuff.png"s, "debuff"s, game::instance()->get_renderer())) return false;
 
-	if (!Texture_manager::instance()->create_texture_from_string("/"s, "div1"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
-	if (!Texture_manager::instance()->create_texture_from_string("/"s, "div2"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
-	if (!Texture_manager::instance()->create_texture_from_string("+"s, "plus"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
+	//if (!Texture_manager::instance()->create_texture_from_string("/"s, "div"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
+	//if (!Texture_manager::instance()->create_texture_from_string("x"s, "mul"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
+	//if (!Texture_manager::instance()->create_texture_from_string("+"s, "plus"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
 
 	m_object.push_back(new Game_object("game_play_background"s, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT));
 	m_object.push_back(new Menu_button("replay"s, WINDOW_WIDTH * 0.02, WINDOW_HEIGHT * 0.02, 84, 84, replay));
@@ -597,22 +558,22 @@ bool Level6::on_start()
 	m_object.push_back(new Game_object("base"s, ENEMY9_BASE_X, ENEMY9_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy9's base
 	m_object.push_back(new Game_object("base"s, ENEMY10_BASE_X, ENEMY10_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy10's base
 
-	m_object.push_back(new Game_object("div1"s, ENEMY4_BASE_X + 50, ENEMY4_BASE_Y + 15, Texture_manager::instance()->get_text_width("div1"s),Texture_manager::instance()->get_text_height("div1")));
-	m_object.push_back(new Game_object("div2"s, ENEMY7_BASE_X + 50, ENEMY7_BASE_Y + 15, Texture_manager::instance()->get_text_width("div2"s), Texture_manager::instance()->get_text_height("div2")));
-	m_object.push_back(new Game_object("plus"s, ENEMY1_BASE_X + 50, ENEMY1_BASE_Y + 15, Texture_manager::instance()->get_text_width("plus"s), Texture_manager::instance()->get_text_height("plus")));
+	//m_object.push_back(new Game_object("mul"s, ENEMY4_BASE_X + 50, ENEMY4_BASE_Y + 15, Texture_manager::instance()->get_text_width("mul"s),Texture_manager::instance()->get_text_height("mul")));
+	//m_object.push_back(new Game_object("div"s, ENEMY1_BASE_X + 50, ENEMY1_BASE_Y + 15, Texture_manager::instance()->get_text_width("div"s), Texture_manager::instance()->get_text_height("div")));
+	//m_object.push_back(new Game_object("plus"s, ENEMY7_BASE_X + 50, ENEMY7_BASE_Y + 15, Texture_manager::instance()->get_text_width("plus"s), Texture_manager::instance()->get_text_height("plus")));
 
 	m_player = new Player("player_idle"s, PLAYER_STRENGTH, PLAYER_BASE_X + 0.5 * (BASE_WIDTH - PLAYER_WIDTH), PLAYER_BASE_Y + PLAYER_Y_SCALE, PLAYER_WIDTH, PLAYER_HEIGHT);//player
 
 	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY0_STRENGTH, ENEMY0_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY0_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy0
-	m_enemy.push_back(new Enemy("buff"s, ENEMY1_STRENGTH, ENEMY1_BASE_X + 0.5 * (BASE_WIDTH - BUFF_WIDTH), ENEMY1_BASE_Y + BUFF_Y_SCALE, BUFF_WIDTH, BUFF_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy1
+	m_enemy.push_back(new Enemy("debuff"s, ENEMY1_STRENGTH, ENEMY1_BASE_X + 0.5 * (BASE_WIDTH - DEBUFF_WIDTH), ENEMY1_BASE_Y + DEBUFF_Y_SCALE, DEBUFF_WIDTH, DEBUFF_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy1
 	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY2_STRENGTH, ENEMY2_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY2_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy2
 	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY3_STRENGTH, ENEMY3_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY3_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy3
-	m_enemy.push_back(new Enemy("debuff"s, ENEMY4_STRENGTH, ENEMY4_BASE_X + 0.5 * (BASE_WIDTH - DEBUFF_WIDTH), ENEMY4_BASE_Y + DEBUFF_Y_SCALE, DEBUFF_WIDTH, DEBUFF_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy4
+	m_enemy.push_back(new Enemy("buff"s, ENEMY4_STRENGTH, ENEMY4_BASE_X + 0.5 * (BASE_WIDTH - BUFF_WIDTH), ENEMY4_BASE_Y + BUFF_Y_SCALE, BUFF_WIDTH, BUFF_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy4
 	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY5_STRENGTH, ENEMY5_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY5_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy5
 	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY6_STRENGTH, ENEMY6_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY6_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy6
-	m_enemy.push_back(new Enemy("debuff"s, ENEMY7_STRENGTH, ENEMY7_BASE_X + 0.5 * (BASE_WIDTH - DEBUFF_WIDTH), ENEMY7_BASE_Y + DEBUFF_Y_SCALE, DEBUFF_WIDTH, DEBUFF_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy7
+	m_enemy.push_back(new Enemy("buff"s, ENEMY7_STRENGTH, ENEMY7_BASE_X + 0.5 * (BASE_WIDTH - BUFF_WIDTH), ENEMY7_BASE_Y + BUFF_Y_SCALE, BUFF_WIDTH, BUFF_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy7
 	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY8_STRENGTH, ENEMY8_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY8_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy8
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY9_STRENGTH, ENEMY9_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY9_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy9
+	m_enemy.push_back(new Enemy("debuff"s, ENEMY9_STRENGTH, ENEMY9_BASE_X + 0.5 * (BASE_WIDTH - DEBUFF_WIDTH), ENEMY9_BASE_Y + DEBUFF_Y_SCALE, DEBUFF_WIDTH, DEBUFF_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy9
 	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY10_STRENGTH, ENEMY10_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY10_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy10
 	m_exit = false;
 	return true;
@@ -636,10 +597,9 @@ bool Level6::on_exit()
 	Texture_manager::instance()->remove_from_texture_map("enemy_attack"s);
 	Texture_manager::instance()->remove_from_texture_map("buff"s);
 	Texture_manager::instance()->remove_from_texture_map("debuff"s);
-	Texture_manager::instance()->remove_from_texture_map("div1"s);
-	Texture_manager::instance()->remove_from_texture_map("div2"s);
-	Texture_manager::instance()->remove_from_texture_map("plus"s);
-
+	//Texture_manager::instance()->remove_from_texture_map("div"s);
+	//Texture_manager::instance()->remove_from_texture_map("mul"s);
+	//Texture_manager::instance()->remove_from_texture_map("plus"s);
 
 	m_exit = true;
 	return true;

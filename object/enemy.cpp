@@ -12,9 +12,13 @@ void Enemy::update()
 
 }
 
-void Enemy::strength_to_text(int x, int y)
+void Enemy::strength_to_text(int x, int y,std::string ope,bool is_buff)
 {
-	std::string temp = std::to_string(m_strength);
+	std::string temp{};
+	if (ope == "+"s&&!is_buff) {
+		temp = std::to_string(m_strength);
+	}
+	else temp = ope + std::to_string(m_strength);
 	if (Texture_manager::instance()->is_texture_in_map("enemy"s+std::to_string(m_enemy_id)))
 	{
 		Texture_manager::instance()->remove_from_texture_map("enemy"s + std::to_string(m_enemy_id));
@@ -25,10 +29,7 @@ void Enemy::strength_to_text(int x, int y)
 	}
 	else if (m_strength == 1) {
 		Texture_manager::instance()->remove_from_texture_map("enemy"s + std::to_string(m_enemy_id));
-		/*Texture_manager::instance()->remove_from_texture_map("mul"s);
-		Texture_manager::instance()->remove_from_texture_map("sub"s);
-		Texture_manager::instance()->remove_from_texture_map("plus"s);
-		Texture_manager::instance()->remove_from_texture_map("div"s);*/
+		return;
 	}
 	else Texture_manager::instance()->create_texture_from_string(temp, "enemy"s + std::to_string(m_enemy_id), 255, 248, 165, 255, 1, game::instance()->get_renderer());
 	Texture_manager::instance()->draw("enemy"s + std::to_string(m_enemy_id), x, y, Texture_manager::instance()->get_text_width("enemy"s + std::to_string(m_enemy_id)), Texture_manager::instance()->get_text_height("enemy"s + std::to_string(m_enemy_id)), game::instance()->get_renderer());

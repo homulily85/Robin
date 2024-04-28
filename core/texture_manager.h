@@ -50,9 +50,9 @@ public:
 	//renderer: renderer to copy to
 	bool create_texture_from_string(const std::string& string, const std::string& id, int r, int b, int g, int a, int font, SDL_Renderer* renderer);
 	//Get text height
-	int get_text_height(const std::string& id) { return m_text_size[id].h; }
+	int get_text_height(const std::string& id);
 	//Get text width
-	int get_text_width(const std::string& id) { return m_text_size[id].w; }
+	int get_text_width(const std::string& id);
 	bool is_texture_in_map(const std::string& id) { return m_texture.find(id) != m_texture.end()&&m_texture[id]!=nullptr; }
 private:
 	std::map<std::string, SDL_Texture*> m_texture{};

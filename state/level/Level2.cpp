@@ -169,7 +169,7 @@ void Level2::render()
 	else return;
 	if (!m_exit && m_enemy[0] != nullptr) {
 		m_enemy[0]->draw();
-		m_enemy[0]->strength_to_text(ENEMY0_BASE_X + 50, ENEMY0_BASE_Y + 15);
+		m_enemy[0]->strength_to_text(ENEMY0_BASE_X + 50, ENEMY0_BASE_Y + 15,"+"s);
 		if (m_enemy[0]->get_strength() != 0 && !m_enemy[0]->get_attack()) {
 			m_enemy[0]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME - 1)));
 		}
@@ -198,7 +198,7 @@ void Level2::render()
 	else return;
 	if (!m_exit && m_enemy[1] != nullptr) {
 		m_enemy[1]->draw();
-		m_enemy[1]->strength_to_text(ENEMY1_BASE_X + 50, ENEMY1_BASE_Y + 15);
+		m_enemy[1]->strength_to_text(ENEMY1_BASE_X + 50, ENEMY1_BASE_Y + 15,"+"s);
 		if (m_enemy[1]->get_strength() != 0 && !m_enemy[1]->get_attack()) {
 			m_enemy[1]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME - 1)));
 		}
@@ -227,7 +227,7 @@ void Level2::render()
 	else return;
 	if (!m_exit && m_enemy[2] != nullptr) {
 		m_enemy[2]->draw();
-		m_enemy[2]->strength_to_text(ENEMY2_BASE_X + 50, ENEMY2_BASE_Y + 15);
+		m_enemy[2]->strength_to_text(ENEMY2_BASE_X + 50, ENEMY2_BASE_Y + 15,"+"s);
 		if (m_enemy[2]->get_strength() != 0 && !m_enemy[2]->get_attack()) {
 			m_enemy[2]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME - 1)));
 		}

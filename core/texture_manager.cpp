@@ -97,8 +97,8 @@ void Texture_manager::remove_from_texture_map(const std::string& texture_id)
     if (m_texture.find(texture_id) != m_texture.end() && m_texture[texture_id] != nullptr) {
         SDL_DestroyTexture(m_texture[texture_id]);
         m_texture[texture_id] = nullptr;
+        m_texture.erase(texture_id);
     }
-    m_texture.erase(texture_id);
 }
 
 bool Texture_manager::create_texture_from_string(const std::string& string, const std::string& id, int r, int b, int g, int a,int font, SDL_Renderer* renderer)
@@ -146,4 +146,32 @@ bool Texture_manager::create_texture_from_string(const std::string& string, cons
 		}
         return false;
     }
+}
+
+int Texture_manager::get_text_height(const std::string& id)
+{
+    try {
+        if (m_text_size.find(id) == m_text_size.end()) {
+		throw id;
+		}
+        return m_text_size[id].h;
+	}
+	catch (const std::string &e) {
+		game::instance()->get_log_file() << "Error: Cannot find id: " << e << " in texture map.\n";
+		exit(EXIT_FAILURE);
+    }
+}
+
+int Texture_manager::get_text_width(const std::string& id)
+{
+    try {
+		if (m_text_size.find(id) == m_text_size.end()) {
+			throw id;
+		}
+		return m_text_size[id].w;
+	}
+	catch (const std::string &e) {
+		game::instance()->get_log_file() << "Error: Cannot find id: " << e << " in texture map.\n";
+		exit(EXIT_FAILURE);
+	}
 }
