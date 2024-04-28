@@ -3,7 +3,12 @@
 #include <Windows.h>
 
 int WINAPI WinMain(	HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,int nCmdShow){
-	if (!game::instance()->init("Robin", WINDOW_WIDTH, WINDOW_HEIGHT)) return 0;
+	try {
+		if (!game::instance()->init("Robin", WINDOW_WIDTH, WINDOW_HEIGHT)) throw -1;
+	}
+	catch (int) {
+		exit(EXIT_FAILURE);
+	}
 	while (game::instance()->is_running())
 	{
 		game::instance()->handle_events();

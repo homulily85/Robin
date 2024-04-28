@@ -11,8 +11,16 @@ Game_state_manager::~Game_state_manager()
 void Game_state_manager::push(Game_state* state)
 {
 	//if (!m_game_state.empty() && m_game_state.back()->get_state_ID() == m_game_state[m_game_state.size() - 1]->get_state_ID()) return;
-	m_game_state.push_back(state);
-	state->on_start();
+	try {
+		m_game_state.push_back(state);
+		if (!state->on_start()) throw - 1;
+		
+	}
+	catch (int ) {
+		delete m_game_state.back();
+		m_game_state.pop_back();
+		exit(EXIT_FAILURE);
+	}
 }
 
 void Game_state_manager::replace(Game_state* state)
@@ -25,8 +33,16 @@ void Game_state_manager::replace(Game_state* state)
 			m_game_state.pop_back();
 		}
 	}
-	m_game_state.push_back(state);
-	m_game_state.back()->on_start();
+	try {
+		m_game_state.push_back(state);
+		if (!state->on_start()) throw - 1;
+
+	}
+	catch (int) {
+		delete m_game_state.back();
+		m_game_state.pop_back();
+		exit(EXIT_FAILURE);
+	}
 }
 
 void Game_state_manager::pop()

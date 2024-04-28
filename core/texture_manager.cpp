@@ -23,27 +23,41 @@ Texture_manager::~Texture_manager()
     m_instance = nullptr;
     TTF_CloseFont(m_level_font);
     TTF_CloseFont(m_strength_font);
-    TTF_Quit();
 }
 
 bool Texture_manager::load(const std::string& file_name, const std::string& id, SDL_Renderer* renderer)
 {
-    SDL_Surface* temp_surface = IMG_Load(file_name.c_str());
-    if (temp_surface == nullptr) {
-        game::instance()->get_log_file()<< IMG_GetError() << '\n';
-        return false;
+    try {
+        SDL_Surface* temp_surface = IMG_Load(file_name.c_str());
+        if (temp_surface == nullptr) {
+            throw -1;
+        }
+        SDL_Texture* temp_texture = SDL_CreateTextureFromSurface(renderer, temp_surface);
+		if (temp_texture == nullptr) {
+			throw -2;
+		}
+        m_texture[id] = temp_texture;
+        SDL_FreeSurface(temp_surface);
+        return true;
     }
-    SDL_Texture* temp_texture = SDL_CreateTextureFromSurface(renderer, temp_surface);
-    if (temp_texture == nullptr) {
-        game::instance()->get_log_file() << SDL_GetError() << '\n';
-        return false;
-    }
-    m_texture[id] = temp_texture;
-    return true;
+    catch (int x) {
+		if (x==-1) game::instance()->get_log_file() <<"Error: "<< IMG_GetError() << '\n';
+        if (x==-2) game::instance()->get_log_file() << "Error: " << SDL_GetError() << '\n';
+		return false;
+	}
 }
 
 void Texture_manager::draw(const std::string& id, int x, int y, int w, int h, SDL_Renderer* renderer, SDL_RendererFlip flip)
 {
+    try {
+        if (m_texture.find(id) == m_texture.end()) {
+			throw id;
+		}
+    }
+    catch (const std::string &e) {
+		game::instance()->get_log_file() << "Error: Cannot find id: "<<e <<" in texture map.\n";
+		exit(EXIT_FAILURE);
+	}
     SDL_Rect source_rect{};
     SDL_Rect destination_rect{};
 
@@ -57,6 +71,15 @@ void Texture_manager::draw(const std::string& id, int x, int y, int w, int h, SD
 
 void Texture_manager::draw_frame(const std::string& id, int x, int y, int w, int h, int current_row, int current_frame, SDL_Renderer* renderer, SDL_RendererFlip flip)
 {
+    try {
+		if (m_texture.find(id) == m_texture.end()) {
+			throw id;
+		}
+	}
+	catch (const std::string &e) {
+		game::instance()->get_log_file() << "Error: Cannot find id: " << e << " in texture map.\n";
+		exit(EXIT_FAILURE);
+	}
     SDL_Rect source_rect{};
     SDL_Rect destination_rect{};
 
@@ -91,24 +114,36 @@ bool Texture_manager::create_texture_from_string(const std::string& string, cons
         temp_font = m_strength_font;
         break;
     case 2:
-        temp_font = result_font;
+        temp_font = m_result_font;
 		break;
     default:
-        break;
+        game::instance()->get_log_file() << "Error: Cannot find font id: " << font << " in texture map.\n";
+        exit(EXIT_FAILURE);
     }
-    SDL_Surface* temp_surface{ TTF_RenderText_Blended(temp_font,string.c_str(),color) };
-    if (temp_surface == nullptr) {
-        game::instance()->get_log_file() << TTF_GetError() << '\n';
+    try
+    {
+        SDL_Surface* temp_surface{ TTF_RenderText_Blended(temp_font,string.c_str(),color) };
+        if (temp_surface == nullptr) {
+            throw - 1;
+        }
+        SDL_Texture* temp_texture{ SDL_CreateTextureFromSurface(renderer,temp_surface) };
+        if (temp_texture == nullptr) {
+            throw -2;
+        }
+        m_texture[id] = temp_texture;
+        m_text_size[id].h = temp_surface->h;
+        m_text_size[id].w = temp_surface->w;
+        SDL_FreeSurface(temp_surface);
+        return true;
+    }
+    catch (int x)
+    {
+        if (x == -1) {
+            game::instance()->get_log_file() << TTF_GetError() << '\n';
+        }
+        if (x == -2) {
+			game::instance()->get_log_file() << SDL_GetError() << '\n';
+		}
         return false;
     }
-    SDL_Texture* temp_texture{ SDL_CreateTextureFromSurface(renderer,temp_surface) };
-    if (temp_texture == nullptr) {
-        game::instance()->get_log_file() << SDL_GetError() << '\n';
-        return false;
-    }
-    m_texture[id] = temp_texture;
-    m_text_size[id].h = temp_surface->h;
-    m_text_size[id].w = temp_surface->w;
-    SDL_FreeSurface(temp_surface);
-    return true;
 }

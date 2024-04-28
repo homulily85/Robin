@@ -57,12 +57,12 @@ public:
 private:
 	std::map<std::string, SDL_Texture*> m_texture{};
 	//Ensure that Texture_manager can be initialized only once
-	Texture_manager() : m_level_font{ TTF_OpenFont("pic/ChangaOne-Regular.ttf",60) }, m_strength_font{ TTF_OpenFont("pic/ChangaOne-Regular.ttf", 30) }, result_font{ TTF_OpenFont("pic/ChangaOne-Regular.ttf", 80) } {}
+	Texture_manager() : m_level_font{ TTF_OpenFont("pic/ChangaOne-Regular.ttf",60) }, m_strength_font{ TTF_OpenFont("pic/ChangaOne-Regular.ttf", 30) }, m_result_font{ TTF_OpenFont("pic/ChangaOne-Regular.ttf", 80) } {}
 	//Check whether object is instanced. Note: Static member variable cannot be initialized in declaration.
 	static Texture_manager* m_instance;
 	TTF_Font* m_level_font{};
 	TTF_Font* m_strength_font{};
-	TTF_Font* result_font{};
+	TTF_Font* m_result_font{};
 	struct Text_size
 	{
 		int w;

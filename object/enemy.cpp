@@ -9,9 +9,7 @@ int Enemy::enemy_id{ 0 };
 
 void Enemy::update()
 {
-	/*_current_frame = (SDL_GetTicks() / 100) % 6;
-	m_velocity.set_x(1);
-	m_position -= m_velocity;*/
+
 }
 
 void Enemy::strength_to_text(int x, int y)
