@@ -16,6 +16,9 @@ constexpr int ENEMY_HEIGHT{ 64 };
 constexpr int BUFF_WIDTH{ 19 };
 constexpr int BUFF_HEIGHT{ 67 };
 
+constexpr int WITCH_WIDTH{ 32 };
+constexpr int WITCH_HEIGHT{ 32 };
+
 constexpr int DEBUFF_WIDTH{ 32 };
 constexpr int DEBUFF_HEIGHT{ 32 };
 
@@ -29,10 +32,15 @@ constexpr int PLAYER_Y_SCALE{ 68 };
 constexpr int ENEMY_Y_SCALE{ 68 };
 constexpr int BUFF_Y_SCALE{ 45 };
 constexpr int DEBUFF_Y_SCALE{ 85 };
+constexpr int WITCH_Y_SCALE{ 80 };
 
 constexpr int ENEMY_DEFAULT_MAX_FRAME{ 4 };
 constexpr int ENEMY_ATTACK_MAX_FRAME{ 8 };
 constexpr int ENEMY_DEATH_MAX_FRAME{ 5 };
+
+constexpr int WITCH_DEFAULT_MAX_FRAME{ 2 };
+constexpr int WITCH_ATTACK_MAX_FRAME{ 8 };
+constexpr int WITCH_DEATH_MAX_FRAME{ 8 };
 
 constexpr int PLAYER_IDLE_MAX_FRAME{ 11 };
 constexpr int PLAYER_ATTACK_MAX_FRAME{ 3 };
