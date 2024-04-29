@@ -57,7 +57,7 @@ bool Level_list::on_start()
 	m_object.push_back(new Menu_button("back_button"s, WINDOW_WIDTH * 0.05, WINDOW_HEIGHT * 0.88, 84, 84, exit_to_menu));
 	for (int i = 1; i <= 4; i++) {
 		for (int j = 1; j <= 5; j++) {
-			if ((i - 1) * 5 + j <= 8)
+			if ((i - 1) * 5 + j <= 9)
 			{
 				m_object.push_back(new Menu_button("level_icon"s, WINDOW_WIDTH * 0.22 + WINDOW_WIDTH * 0.12 * (j - 1), WINDOW_HEIGHT * 0.1 + WINDOW_HEIGHT * 0.2 * (i - 1), 90, 105, level_list_to_play));
 				if (j + 5 * (i - 1) < 10) m_object.push_back(new Game_object("level"s + std::to_string(j + 5 * (i - 1)), WINDOW_WIDTH * 0.24 + WINDOW_WIDTH * 0.12 * (j - 1), WINDOW_HEIGHT * 0.11 + WINDOW_HEIGHT * 0.2 * (i - 1), Texture_manager::instance()->get_text_width("level"s + std::to_string(j + 5 * (i - 1))), Texture_manager::instance()->get_text_height("level"s + std::to_string(j + 5 * (i - 1)))));
@@ -130,9 +130,9 @@ void Level_list::level_list_to_play()
 	case 8:
 		game::instance()->get_game_state_manager()->replace(new Level8);
 		break;
-	/*case 9:
+	case 9:
 		game::instance()->get_game_state_manager()->replace(new Level9);
-		break;*/
+		break;
 	/*case 10:
 		game::instance()->get_game_state_manager()->replace(new Level10);
 		break;*/

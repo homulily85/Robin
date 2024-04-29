@@ -1,5 +1,11 @@
+Entered Level 5
+Exited Level 5
 Entered Level 8
-Entered Victory
 Exited Level 8
+Entered Level 9
+Entered Level 9
+Exited Level 9
+Entered Victory
+Exited Level 9
 Exited Victory
 Game cleaned up successfully
