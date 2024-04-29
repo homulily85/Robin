@@ -1,7 +1,5 @@
-Entered Level 2
-Entered Game Over
-Exited Level 2
-Exited Game Over
-Entered Level 2
-Exited Level 2
+Entered Level 8
+Entered Victory
+Exited Level 8
+Exited Victory
 Game cleaned up successfully

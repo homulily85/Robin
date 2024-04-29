@@ -287,10 +287,8 @@ void Level5::render()
 	}
 	else return;
 	if (!m_exit && m_enemy[0] != nullptr) {
-		/*m_enemy[0]->draw();
-		m_enemy[0]->strength_to_text(ENEMY0_BASE_X + 50, ENEMY0_BASE_Y + 15,"-"s,true);*/
 		m_enemy[0]->draw();
-		m_enemy[0]->strength_to_text(ENEMY0_BASE_X + 50, ENEMY0_BASE_Y + 15, "/"s);
+		m_enemy[0]->strength_to_text(ENEMY0_BASE_X + 50, ENEMY0_BASE_Y + 15, "-"s);
 		if (m_enemy[0]->get_strength() != 0 && !m_enemy[0]->get_attack()) {
 			m_enemy[0]->set_current_frame((int)((SDL_GetTicks() / 100) % (WITCH_DEFAULT_MAX_FRAME - 1)));
 		}
@@ -525,12 +523,6 @@ bool Level5::on_start()
 	if (!Texture_manager::instance()->load("pic/witch_idle.png"s, "witch_idle"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/witch_attack.png"s, "witch_attack"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/witch_death.png"s, "witch_death"s, game::instance()->get_renderer())) return false;
-
-	//if (!Texture_manager::instance()->create_texture_from_string("/"s, "div"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
-	//if (!Texture_manager::instance()->create_texture_from_string("x"s, "mul1"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
-	//if (!Texture_manager::instance()->create_texture_from_string("x"s, "mul2"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
-	//if (!Texture_manager::instance()->create_texture_from_string("+"s, "plus"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
-	//if (!Texture_manager::instance()->create_texture_from_string("-"s, "minus"s, 255, 248, 165, 255, 1, game::instance()->get_renderer())) return false;
 
 	m_object.push_back(new Game_object("game_play_background"s, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT));
 	m_object.push_back(new Menu_button("replay"s, WINDOW_WIDTH * 0.02, WINDOW_HEIGHT * 0.02, REPLAY_WIDTH, REPLAY_HEIGHT, replay));

@@ -249,8 +249,6 @@ void Level4::render()
 	}
 	else return;
 	if (!m_exit && m_enemy[1] != nullptr) {
-		/*m_enemy[1]->draw();
-		m_enemy[1]->strength_to_text(ENEMY1_BASE_X + 50, ENEMY1_BASE_Y + 15,"/"s,true);*/
 		m_enemy[1]->draw();
 		m_enemy[1]->strength_to_text(ENEMY1_BASE_X + 50, ENEMY1_BASE_Y + 15, "/"s);
 		if (m_enemy[1]->get_strength() != 1 && !m_enemy[1]->get_attack()) {
