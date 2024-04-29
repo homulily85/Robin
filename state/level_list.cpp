@@ -49,7 +49,9 @@ bool Level_list::on_start()
 	for (int i = 1; i <= 2; i++) {
 		for (int j = 1; j <= 5; j++) {
 			if ((i - 1) * 5 + j <= 10) {
-				if (!Texture_manager::instance()->create_texture_from_string(std::to_string(j + 5 * (i - 1)), "level"s + std::to_string(j + 5 * (i - 1)), 255, 248, 165, 255, 0, game::instance()->get_renderer())) return false;
+				if (game::instance()->is_all_level_before_cleared((i - 1) * 5 + j)) {
+					if (!Texture_manager::instance()->create_texture_from_string(std::to_string(j + 5 * (i - 1)), "level"s + std::to_string(j + 5 * (i - 1)), 255, 248, 165, 255, 0, game::instance()->get_renderer())) return false;
+				}
 			}
 		}
 	}
@@ -60,8 +62,13 @@ bool Level_list::on_start()
 			if ((i - 1) * 5 + j <= 10)
 			{
 				m_object.push_back(new Menu_button("level_icon"s, WINDOW_WIDTH * 0.22 + WINDOW_WIDTH * 0.12 * (j - 1), WINDOW_HEIGHT * 0.1 + WINDOW_HEIGHT * 0.2 * (i - 1), 90, 105, level_list_to_play));
-				if (j + 5 * (i - 1) < 10) m_object.push_back(new Game_object("level"s + std::to_string(j + 5 * (i - 1)), WINDOW_WIDTH * 0.24 + WINDOW_WIDTH * 0.12 * (j - 1), WINDOW_HEIGHT * 0.11 + WINDOW_HEIGHT * 0.2 * (i - 1), Texture_manager::instance()->get_text_width("level"s + std::to_string(j + 5 * (i - 1))), Texture_manager::instance()->get_text_height("level"s + std::to_string(j + 5 * (i - 1)))));
-				else m_object.push_back(new Game_object("level"s + std::to_string(j + 5 * (i - 1)), WINDOW_WIDTH * 0.23 + WINDOW_WIDTH * 0.12 * (j - 1), WINDOW_HEIGHT * 0.11 + WINDOW_HEIGHT * 0.2 * (i - 1), Texture_manager::instance()->get_text_width("level"s + std::to_string(j + 5 * (i - 1))), Texture_manager::instance()->get_text_height("level"s + std::to_string(j + 5 * (i - 1)))));
+				if (game::instance()->is_all_level_before_cleared((i - 1) * 5 + j)) {
+					if (j + 5 * (i - 1) < 10) m_object.push_back(new Game_object("level"s + std::to_string(j + 5 * (i - 1)), WINDOW_WIDTH * 0.24 + WINDOW_WIDTH * 0.12 * (j - 1), WINDOW_HEIGHT * 0.11 + WINDOW_HEIGHT * 0.2 * (i - 1), Texture_manager::instance()->get_text_width("level"s + std::to_string(j + 5 * (i - 1))), Texture_manager::instance()->get_text_height("level"s + std::to_string(j + 5 * (i - 1)))));
+					else m_object.push_back(new Game_object("level"s + std::to_string(j + 5 * (i - 1)), WINDOW_WIDTH * 0.23 + WINDOW_WIDTH * 0.12 * (j - 1), WINDOW_HEIGHT * 0.11 + WINDOW_HEIGHT * 0.2 * (i - 1), Texture_manager::instance()->get_text_width("level"s + std::to_string(j + 5 * (i - 1))), Texture_manager::instance()->get_text_height("level"s + std::to_string(j + 5 * (i - 1)))));
+				}
+				else {
+					m_object.push_back(new Menu_button("level_lock"s, WINDOW_WIDTH * 0.22 + WINDOW_WIDTH * 0.12 * (j - 1), WINDOW_HEIGHT * 0.1 + WINDOW_HEIGHT * 0.2 * (i - 1), 90, 105, level_list_to_play));
+				}
 			}
 			else {
 				m_object.push_back(new Menu_button("level_lock"s, WINDOW_WIDTH * 0.22 + WINDOW_WIDTH * 0.12 * (j - 1), WINDOW_HEIGHT * 0.1 + WINDOW_HEIGHT * 0.2 * (i - 1), 90, 105, level_list_to_play));
@@ -103,7 +110,7 @@ void Level_list::level_list_to_play()
 			}
 		}
 	}
-
+	if (!game::instance()->is_all_level_before_cleared(level_number)) level_number = 0;
 	switch (level_number)
 	{
 	case 1:

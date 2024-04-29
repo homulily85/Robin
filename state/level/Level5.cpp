@@ -239,6 +239,7 @@ void Level5::update()
 		game::instance()->get_game_state_manager()->replace(new Game_over);
 	}
 	else if (enemy_count == count_defeated() && frame_check_victory()) {
+		game::instance()->set_level_cleared(5);
 		SDL_Delay(500);
 		game::instance()->get_game_state_manager()->replace(new Victory);
 	}

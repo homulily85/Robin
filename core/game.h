@@ -43,6 +43,8 @@ public:
 	Game_state_manager* get_game_state_manager() { return m_game_state_machine; }
 	bool m_is_paused{ false };
 	std::ofstream& get_log_file() { return m_log_file; }
+	bool is_all_level_before_cleared(int level);
+	void set_level_cleared(int level) { m_level_cleared[level-1] = true; }
 private:
 	//Ensure that game object can be initialized only once
 	game() {}
@@ -53,7 +55,8 @@ private:
 	static game* m_instance;
 	Game_state_manager* m_game_state_machine{ nullptr };
 	std::ofstream m_log_file{"log.txt"};
-	
+	std::array<bool, 10> m_level_cleared{};
+	SDL_RWops* m_file{ nullptr };
 };
 
 #endif // !GAME_H

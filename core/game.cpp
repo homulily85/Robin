@@ -63,6 +63,31 @@ bool game::init(const char* name, int width, int height, bool is_full_screen, in
         m_log_file << TTF_GetError() << '\n';
         return false;
     }
+    try
+    {
+		m_file = SDL_RWFromFile("level.dat", "r+b");
+        if (m_file == nullptr) throw - 1;
+        for (int i = 0; i < 10; i++) {
+			SDL_RWread(m_file, &m_level_cleared[i], sizeof(bool), 1);
+        }
+		SDL_RWclose(m_file);
+		for (int i = 0; i < 10; i++) {
+			m_log_file << "Level " << i+1 << " cleared: " << m_level_cleared[i] << '\n';
+		}
+    }
+    catch (int)
+    {
+		m_file = SDL_RWFromFile("level.dat", "w+b");
+		if (m_file == nullptr) {
+			m_log_file << "Error: " << SDL_GetError() << '\n';
+			return false;
+		}
+        for (int i = 0; i < 10; i++) {
+			m_level_cleared[i] = false;
+			SDL_RWwrite(m_file, &m_level_cleared[i], sizeof(bool), 1);
+        }
+		SDL_RWclose(m_file);
+    }
     //Initialize something here
     m_game_state_machine = new Game_state_manager;
     m_game_state_machine->push(new Menu_state);
@@ -89,10 +114,24 @@ void game::handle_events()
 
 void game::clean_up()
 {
+	m_file = SDL_RWFromFile("level.dat", "w+b");
+    for (int i = 0; i < 10; i++) {
+        SDL_RWwrite(m_file, &m_level_cleared[i], sizeof(bool), 1);
+    }
+	SDL_RWclose(m_file);
     SDL_DestroyRenderer(m_renderer);
     SDL_DestroyWindow(m_window);
     SDL_Quit();
     TTF_Quit();
     m_log_file << "Game cleaned up successfully\n";
     m_log_file.close();
+}
+
+bool game::is_all_level_before_cleared(int level)
+{
+    level--;
+	for (int i = 0; i < level; i++) {
+		if (!m_level_cleared[i]) return false;
+	}
+    return true;
 }
