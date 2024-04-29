@@ -153,6 +153,7 @@
     <ClInclude Include="state\game_over.h" />
     <ClInclude Include="state\level.h" />
     <ClInclude Include="state\level\level1.h" />
+    <ClInclude Include="state\level\Level10.h" />
     <ClInclude Include="state\level\Level2.h" />
     <ClInclude Include="state\level\Level3.h" />
     <ClInclude Include="state\level\Level4.h" />
@@ -178,6 +179,7 @@
     <ClCompile Include="object\player.cpp" />
     <ClCompile Include="state\game_over.cpp" />
     <ClCompile Include="state\level\level1.cpp" />
+    <ClCompile Include="state\level\Level10.cpp" />
     <ClCompile Include="state\level\Level2.cpp" />
     <ClCompile Include="state\level\Level3.cpp" />
     <ClCompile Include="state\level\Level4.cpp" />

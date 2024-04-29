@@ -114,6 +114,9 @@
     <ClInclude Include="state\level\Level9.h">
       <Filter>Header Files\state\level</Filter>
     </ClInclude>
+    <ClInclude Include="state\level\Level10.h">
+      <Filter>Header Files\state\level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\game.cpp">
@@ -183,6 +186,9 @@
       <Filter>Source Files\state\level</Filter>
     </ClCompile>
     <ClCompile Include="state\level\Level9.cpp">
+      <Filter>Source Files\state\level</Filter>
+    </ClCompile>
+    <ClCompile Include="state\level\Level10.cpp">
       <Filter>Source Files\state\level</Filter>
     </ClCompile>
   </ItemGroup>

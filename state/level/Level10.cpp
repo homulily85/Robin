@@ -1,4 +1,4 @@
-#include "Level9.h"
+#include "Level10.h"
 #include <iostream>
 #include "game.h"
 #include "menu_button.h"
@@ -10,47 +10,53 @@
 #include "game_over.h"
 #include "victory.h"
 
-constexpr int PLAYER_STRENGTH{ 100 };
+constexpr int PLAYER_STRENGTH{ 10 };
 
-constexpr int ENEMY0_STRENGTH{ 156 };
-constexpr int ENEMY1_STRENGTH{ 61 };
-constexpr int ENEMY2_STRENGTH{ 309 };
-constexpr int ENEMY3_STRENGTH{ 2 };
-constexpr int ENEMY4_STRENGTH{ 408 };
-constexpr int ENEMY5_STRENGTH{ 100 };
-constexpr int ENEMY6_STRENGTH{ 206 };
-constexpr int ENEMY7_STRENGTH{ 820 };
-constexpr int ENEMY8_STRENGTH{ 303 };
-constexpr int ENEMY9_STRENGTH{ 601 };
+constexpr int ENEMY0_STRENGTH{ 2 };
+constexpr int ENEMY1_STRENGTH{ 9 };
+constexpr int ENEMY2_STRENGTH{ 7 };
+constexpr int ENEMY3_STRENGTH{ 4 };
+constexpr int ENEMY4_STRENGTH{ 65 };
+constexpr int ENEMY5_STRENGTH{ 2 };
+constexpr int ENEMY6_STRENGTH{ 56 };
+constexpr int ENEMY7_STRENGTH{ 198 };
+constexpr int ENEMY8_STRENGTH{ 4900 };
+constexpr int ENEMY9_STRENGTH{ 309 };
+constexpr int ENEMY10_STRENGTH{ 3 };
+constexpr int ENEMY11_STRENGTH{ 770 };
 
 constexpr int PLAYER_BASE_X{ 296 };
 constexpr int PLAYER_BASE_Y{ 460 };
 constexpr int ENEMY0_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 3.5;
 constexpr int ENEMY0_BASE_Y{ PLAYER_BASE_Y };
 constexpr int ENEMY1_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 3.5;
-constexpr int ENEMY1_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT };
-constexpr int ENEMY2_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 5;
-constexpr int ENEMY2_BASE_Y{ PLAYER_BASE_Y };
-constexpr int ENEMY3_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 5;
-constexpr int ENEMY3_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT };
+constexpr int ENEMY1_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT};
+constexpr int ENEMY2_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 3.5;
+constexpr int ENEMY2_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT *2 };
+constexpr int ENEMY3_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 3.5;
+constexpr int ENEMY3_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT * 3 };
 constexpr int ENEMY4_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 5;
-constexpr int ENEMY4_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT * 2 };
+constexpr int ENEMY4_BASE_Y{ PLAYER_BASE_Y };
 constexpr int ENEMY5_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 5;
-constexpr int ENEMY5_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT * 3 };
-constexpr int ENEMY6_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 6.5;
-constexpr int ENEMY6_BASE_Y{ PLAYER_BASE_Y };
-constexpr int ENEMY7_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 6.5;
-constexpr int ENEMY7_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT };
+constexpr int ENEMY5_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT };
+constexpr int ENEMY6_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 5;
+constexpr int ENEMY6_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT * 2 };
+constexpr int ENEMY7_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 5;
+constexpr int ENEMY7_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT * 3 };
 constexpr int ENEMY8_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 6.5;
-constexpr int ENEMY8_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT * 2 };
+constexpr int ENEMY8_BASE_Y{ PLAYER_BASE_Y };
 constexpr int ENEMY9_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 6.5;
-constexpr int ENEMY9_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT * 3 };
+constexpr int ENEMY9_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT };
+constexpr int ENEMY10_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 6.5;
+constexpr int ENEMY10_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT * 2 };
+constexpr int ENEMY11_BASE_X = PLAYER_BASE_X + BASE_WIDTH * 6.5;
+constexpr int ENEMY11_BASE_Y{ PLAYER_BASE_Y - BASE_HEIGHT * 3 };
 
 using namespace std::string_literals;
 
-const std::string Level9::m_state_ID{ "LEVEL9"s };
+const std::string Level10::m_state_ID{ "LEVEL10"s };
 
-void Level9::clean()
+void Level10::clean()
 {
 	for (int i = 0; i < m_object.size(); i++) {
 		if (m_object[i] != nullptr)
@@ -69,7 +75,7 @@ void Level9::clean()
 	}
 }
 
-void Level9::update()
+void Level10::update()
 {
 	for (int i = 0; i < m_object.size(); i++) {
 		if (!m_exit && m_object[i] != nullptr && m_object.size() < 100)  m_object[i]->update();
@@ -85,19 +91,9 @@ void Level9::update()
 	if (mouse_pos->get_x() > ENEMY0_BASE_X && mouse_pos->get_x() < ENEMY0_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY0_BASE_Y && mouse_pos->get_y() < ENEMY0_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_enemy[0]->get_strength() > 0 && m_player->get_strength() > 0) {
 		if (m_enemy[0] != nullptr) {
 			m_player->set_position(ENEMY0_BASE_X + 0.25 * (BASE_WIDTH - PLAYER_WIDTH), ENEMY0_BASE_Y + ENEMY_Y_SCALE);
-			if (m_player->get_strength() > m_enemy[0]->get_strength()) {
-				m_player->change_strength(m_enemy[0]->get_strength(), '+');
-				m_enemy[0]->set_strength_to_zero();
-				m_enemy[0]->change_texture("enemy_death"s, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL);
-				m_player->change_texture("player_attack"s, PLAYER_WIDTH, PLAYER_HEIGHT, SDL_FLIP_NONE);
-				m_player->set_attack(true);
-			}
-			else {
-				m_player->set_strength_to_zero();
-				m_player->change_texture("player_death"s, PLAYER_WIDTH, PLAYER_HEIGHT, SDL_FLIP_NONE);
-				m_enemy[0]->change_texture("enemy_attack"s, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL);
-				m_enemy[0]->set_attack(true);
-			}
+			m_player->change_strength(m_enemy[0]->get_strength(), '*');
+			m_enemy[0]->set_strength_to_one();
+			m_enemy[0]->set_current_frame(100);
 		}
 	}
 	else if (mouse_pos->get_x() > ENEMY1_BASE_X && mouse_pos->get_x() < ENEMY1_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY1_BASE_Y && mouse_pos->get_y() < ENEMY1_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_player->get_strength() > 0 && m_enemy[1]->get_strength() > 1) {
@@ -118,7 +114,7 @@ void Level9::update()
 			}
 		}
 	}
-	if (is_tower_destroyed(0, 1)&&mouse_pos->get_x() > ENEMY2_BASE_X && mouse_pos->get_x() < ENEMY2_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY2_BASE_Y && mouse_pos->get_y() < ENEMY2_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_enemy[2]->get_strength() > 0 && m_player->get_strength() > 0) {
+	if (mouse_pos->get_x() > ENEMY2_BASE_X && mouse_pos->get_x() < ENEMY2_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY2_BASE_Y && mouse_pos->get_y() < ENEMY2_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_enemy[2]->get_strength() > 0 && m_player->get_strength() > 0) {
 		if (m_enemy[2] != nullptr) {
 			m_player->set_position(ENEMY2_BASE_X + 0.25 * (BASE_WIDTH - PLAYER_WIDTH), ENEMY2_BASE_Y + ENEMY_Y_SCALE);
 			if (m_player->get_strength() > m_enemy[2]->get_strength()) {
@@ -136,25 +132,25 @@ void Level9::update()
 			}
 		}
 	}
-	else if (is_tower_destroyed(0, 1) && mouse_pos->get_x() > ENEMY3_BASE_X && mouse_pos->get_x() < ENEMY3_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY3_BASE_Y && mouse_pos->get_y() < ENEMY3_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_enemy[3]->get_strength() > 0 && m_player->get_strength() > 0) {
+	else if (mouse_pos->get_x() > ENEMY3_BASE_X && mouse_pos->get_x() < ENEMY3_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY3_BASE_Y && mouse_pos->get_y() < ENEMY3_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_enemy[3]->get_strength() > 0 && m_player->get_strength() > 0) {
 		if (m_enemy[3] != nullptr) {
 			m_player->set_position(ENEMY3_BASE_X + 0.25 * (BASE_WIDTH - PLAYER_WIDTH), ENEMY3_BASE_Y + ENEMY_Y_SCALE);
 			if (m_player->get_strength() > m_enemy[3]->get_strength()) {
-				m_player->change_strength(m_enemy[3]->get_strength(), '/');
-				m_enemy[3]->set_strength_to_one();
-				m_enemy[3]->change_texture("witch_death"s, WITCH_WIDTH, WITCH_HEIGHT, SDL_FLIP_HORIZONTAL);
+				m_player->change_strength(m_enemy[3]->get_strength(), '+');
+				m_enemy[3]->set_strength_to_zero();
+				m_enemy[3]->change_texture("enemy_death"s, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL);
 				m_player->change_texture("player_attack"s, PLAYER_WIDTH, PLAYER_HEIGHT, SDL_FLIP_NONE);
 				m_player->set_attack(true);
 			}
 			else {
 				m_player->set_strength_to_zero();
 				m_player->change_texture("player_death"s, PLAYER_WIDTH, PLAYER_HEIGHT, SDL_FLIP_NONE);
-				m_enemy[3]->change_texture("witch_attack"s, WITCH_WIDTH, WITCH_HEIGHT, SDL_FLIP_HORIZONTAL);
+				m_enemy[3]->change_texture("enemy_attack"s, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL);
 				m_enemy[3]->set_attack(true);
 			}
 		}
 	}
-	else if (is_tower_destroyed(0, 1) && mouse_pos->get_x() > ENEMY4_BASE_X && mouse_pos->get_x() < ENEMY4_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY4_BASE_Y && mouse_pos->get_y() < ENEMY4_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_player->get_strength() > 0 && m_enemy[4]->get_strength() > 1) {
+	else if (is_tower_destroyed(0, 3) && mouse_pos->get_x() > ENEMY4_BASE_X && mouse_pos->get_x() < ENEMY4_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY4_BASE_Y && mouse_pos->get_y() < ENEMY4_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_player->get_strength() > 0 && m_enemy[4]->get_strength() > 1) {
 		if (m_enemy[4] != nullptr) {
 			m_player->set_position(ENEMY4_BASE_X + 0.25 * (BASE_WIDTH - PLAYER_WIDTH), ENEMY4_BASE_Y + ENEMY_Y_SCALE);
 			if (m_player->get_strength() > m_enemy[4]->get_strength()) {
@@ -172,25 +168,15 @@ void Level9::update()
 			}
 		}
 	}
-	else if (is_tower_destroyed(0, 1) && mouse_pos->get_x() > ENEMY5_BASE_X && mouse_pos->get_x() < ENEMY5_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY5_BASE_Y && mouse_pos->get_y() < ENEMY5_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_player->get_strength() > 0 && m_enemy[5]->get_strength() > 1) {
+	else if (is_tower_destroyed(0, 3) && mouse_pos->get_x() > ENEMY5_BASE_X && mouse_pos->get_x() < ENEMY5_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY5_BASE_Y && mouse_pos->get_y() < ENEMY5_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_player->get_strength() > 0 && m_enemy[5]->get_strength() > 1) {
 		if (m_enemy[5] != nullptr) {
 			m_player->set_position(ENEMY5_BASE_X + 0.25 * (BASE_WIDTH - PLAYER_WIDTH), ENEMY5_BASE_Y + ENEMY_Y_SCALE);
-			if (m_player->get_strength() > m_enemy[5]->get_strength()) {
-				m_player->change_strength(m_enemy[5]->get_strength(), '-');
-				m_enemy[5]->set_strength_to_zero();
-				m_enemy[5]->change_texture("witch_death"s, WITCH_WIDTH, WITCH_HEIGHT, SDL_FLIP_HORIZONTAL);
-				m_player->change_texture("player_attack"s, PLAYER_WIDTH, PLAYER_HEIGHT, SDL_FLIP_NONE);
-				m_player->set_attack(true);
-			}
-			else {
-				m_player->set_strength_to_zero();
-				m_player->change_texture("player_death"s, PLAYER_WIDTH, PLAYER_HEIGHT, SDL_FLIP_NONE);
-				m_enemy[5]->change_texture("witch_attack"s, WITCH_WIDTH, WITCH_HEIGHT, SDL_FLIP_HORIZONTAL);
-				m_enemy[5]->set_attack(true);
-			}
+			m_player->change_strength(m_enemy[5]->get_strength(), '*');
+			m_enemy[5]->set_strength_to_one();
+			m_enemy[5]->set_current_frame(100);
 		}
 	}
-	else if (is_tower_destroyed(0, 5) && mouse_pos->get_x() > ENEMY6_BASE_X && mouse_pos->get_x() < ENEMY6_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY6_BASE_Y && mouse_pos->get_y() < ENEMY6_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_enemy[6]->get_strength() > 0 && m_player->get_strength() > 0) {
+	else if (is_tower_destroyed(0, 3) && mouse_pos->get_x() > ENEMY6_BASE_X && mouse_pos->get_x() < ENEMY6_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY6_BASE_Y && mouse_pos->get_y() < ENEMY6_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_enemy[6]->get_strength() > 0 && m_player->get_strength() > 0) {
 		if (m_enemy[6] != nullptr) {
 			m_player->set_position(ENEMY6_BASE_X + 0.25 * (BASE_WIDTH - PLAYER_WIDTH), ENEMY6_BASE_Y + ENEMY_Y_SCALE);
 			if (m_player->get_strength() > m_enemy[6]->get_strength()) {
@@ -208,7 +194,7 @@ void Level9::update()
 			}
 		}
 	}
-	else if (is_tower_destroyed(0, 5) && mouse_pos->get_x() > ENEMY7_BASE_X && mouse_pos->get_x() < ENEMY7_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY7_BASE_Y && mouse_pos->get_y() < ENEMY7_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_enemy[7]->get_strength() > 0 && m_player->get_strength() > 0) {
+	else if (is_tower_destroyed(0, 3) && mouse_pos->get_x() > ENEMY7_BASE_X && mouse_pos->get_x() < ENEMY7_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY7_BASE_Y && mouse_pos->get_y() < ENEMY7_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_enemy[7]->get_strength() > 0 && m_player->get_strength() > 0) {
 		if (m_enemy[7] != nullptr) {
 			m_player->set_position(ENEMY7_BASE_X + 0.25 * (BASE_WIDTH - PLAYER_WIDTH), ENEMY7_BASE_Y + ENEMY_Y_SCALE);
 			if (m_player->get_strength() > m_enemy[7]->get_strength()) {
@@ -226,7 +212,7 @@ void Level9::update()
 			}
 		}
 	}
-	else if (is_tower_destroyed(0, 5) && mouse_pos->get_x() > ENEMY8_BASE_X && mouse_pos->get_x() < ENEMY8_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY8_BASE_Y && mouse_pos->get_y() < ENEMY8_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_player->get_strength() > 0 && m_enemy[8]->get_strength() > 1) {
+	else if (is_tower_destroyed(0, 7) && mouse_pos->get_x() > ENEMY8_BASE_X && mouse_pos->get_x() < ENEMY8_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY8_BASE_Y && mouse_pos->get_y() < ENEMY8_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_player->get_strength() > 0 && m_enemy[8]->get_strength() > 1) {
 		if (m_enemy[8] != nullptr) {
 			m_player->set_position(ENEMY8_BASE_X + 0.25 * (BASE_WIDTH - PLAYER_WIDTH), ENEMY8_BASE_Y + ENEMY_Y_SCALE);
 			if (m_player->get_strength() > m_enemy[8]->get_strength()) {
@@ -244,7 +230,7 @@ void Level9::update()
 			}
 		}
 	}
-	else if (is_tower_destroyed(0, 5)&&mouse_pos->get_x() > ENEMY9_BASE_X && mouse_pos->get_x() < ENEMY9_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY9_BASE_Y && mouse_pos->get_y() < ENEMY9_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_enemy[9]->get_strength() > 0 && m_player->get_strength() > 0) {
+	else if (is_tower_destroyed(0, 7)&&mouse_pos->get_x() > ENEMY9_BASE_X && mouse_pos->get_x() < ENEMY9_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY9_BASE_Y && mouse_pos->get_y() < ENEMY9_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_enemy[9]->get_strength() > 0 && m_player->get_strength() > 0) {
 		if (m_enemy[9] != nullptr) {
 			m_player->set_position(ENEMY9_BASE_X + 0.25 * (BASE_WIDTH - PLAYER_WIDTH), ENEMY9_BASE_Y + ENEMY_Y_SCALE);
 			if (m_player->get_strength() > m_enemy[9]->get_strength()) {
@@ -262,6 +248,32 @@ void Level9::update()
 			}
 		}
 	}
+	else if (is_tower_destroyed(0, 7) && mouse_pos->get_x() > ENEMY10_BASE_X && mouse_pos->get_x() < ENEMY10_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY10_BASE_Y && mouse_pos->get_y() < ENEMY10_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_enemy[10]->get_strength() > 0 && m_player->get_strength() > 0) {
+		if (m_enemy[10] != nullptr) {
+			m_player->set_position(ENEMY10_BASE_X + 0.210 * (BASE_WIDTH - PLAYER_WIDTH), ENEMY10_BASE_Y + ENEMY_Y_SCALE);
+			m_player->change_strength(m_enemy[10]->get_strength(), '*');
+			m_enemy[10]->set_strength_to_one();
+			m_enemy[10]->set_current_frame(100);
+		}
+	}
+	else if (is_tower_destroyed(0, 7) && mouse_pos->get_x() > ENEMY11_BASE_X && mouse_pos->get_x() < ENEMY11_BASE_X + BASE_WIDTH && mouse_pos->get_y() > ENEMY11_BASE_Y && mouse_pos->get_y() < ENEMY11_BASE_Y + BASE_HEIGHT && Input_handle::instance()->get_mouse_state(LEFT) == true && m_enemy[11]->get_strength() > 0 && m_player->get_strength() > 0) {
+		if (m_enemy[11] != nullptr) {
+			m_player->set_position(ENEMY11_BASE_X + 0.25 * (BASE_WIDTH - PLAYER_WIDTH), ENEMY11_BASE_Y + ENEMY_Y_SCALE);
+			if (m_player->get_strength() > m_enemy[11]->get_strength()) {
+				m_player->change_strength(m_enemy[11]->get_strength(), '+');
+				m_enemy[11]->set_strength_to_zero();
+				m_enemy[11]->change_texture("enemy_death"s, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL);
+				m_player->change_texture("player_attack"s, PLAYER_WIDTH, PLAYER_HEIGHT, SDL_FLIP_NONE);
+				m_player->set_attack(true);
+			}
+			else {
+				m_player->set_strength_to_zero();
+				m_player->change_texture("player_death"s, PLAYER_WIDTH, PLAYER_HEIGHT, SDL_FLIP_NONE);
+				m_enemy[11]->change_texture("enemy_attack"s, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL);
+				m_enemy[11]->set_attack(true);
+			}
+		}
+	}
 	if (m_player->get_strength() == 0 && frame_check_defeat()) {
 		SDL_Delay(500);
 		game::instance()->get_game_state_manager()->replace(new Game_over);
@@ -272,7 +284,7 @@ void Level9::update()
 	}
 }
 
-void Level9::render()
+void Level10::render()
 {
 	Uint32 start_time{};
 	Uint32 frame_time{};
@@ -316,31 +328,7 @@ void Level9::render()
 	else return;
 	if (!m_exit && m_enemy[0] != nullptr) {
 		m_enemy[0]->draw();
-		m_enemy[0]->strength_to_text(ENEMY0_BASE_X + 50, ENEMY0_BASE_Y + 15, "+"s);
-		if (m_enemy[0]->get_strength() != 0 && !m_enemy[0]->get_attack()) {
-			m_enemy[0]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME - 1)));
-		}
-		if (m_enemy[0]->get_strength() == 0 && m_enemy[0]->get_current_frame() < ENEMY_DEATH_MAX_FRAME - 1 && !m_player->get_attack()) {
-			int frame = m_enemy[0]->get_current_frame();
-			frame_time = SDL_GetTicks() - start_time;
-			start_time = SDL_GetTicks();
-			if (frame_time > 100) {
-				frame++;
-				m_enemy[0]->set_current_frame(frame);
-				SDL_Delay(100);
-			}
-		}
-		else if (m_enemy[0]->get_attack() && m_enemy[0]->get_current_frame() < ENEMY_ATTACK_MAX_FRAME - 1) {
-			int frame = m_enemy[0]->get_current_frame();
-			frame_time = SDL_GetTicks() - start_time;
-			start_time = SDL_GetTicks();
-			if (frame_time > 100) {
-				frame++;
-				m_enemy[0]->set_current_frame(frame);
-				SDL_Delay(100);
-			}
-		}
-		else m_enemy[0]->set_attack(false);
+		m_enemy[0]->strength_to_text(ENEMY0_BASE_X + 50, ENEMY0_BASE_Y + 15, "x"s, true);
 	}
 	else return;
 	if (!m_exit && m_enemy[1] != nullptr) {
@@ -403,11 +391,11 @@ void Level9::render()
 	else return;
 	if (!m_exit && m_enemy[3] != nullptr) {
 		m_enemy[3]->draw();
-		m_enemy[3]->strength_to_text(ENEMY3_BASE_X + 50, ENEMY3_BASE_Y + 15, "/"s);
-		if (m_enemy[3]->get_strength() != 1 && !m_enemy[3]->get_attack()) {
-			m_enemy[3]->set_current_frame((int)((SDL_GetTicks() / 100) % (WITCH_DEFAULT_MAX_FRAME - 1)));
+		m_enemy[3]->strength_to_text(ENEMY3_BASE_X + 50, ENEMY3_BASE_Y + 15, "+"s);
+		if (m_enemy[3]->get_strength() != 0 && !m_enemy[3]->get_attack()) {
+			m_enemy[3]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME - 1)));
 		}
-		if (m_enemy[3]->get_strength() == 1 && m_enemy[3]->get_current_frame() < WITCH_DEATH_MAX_FRAME - 1 && !m_player->get_attack()) {
+		if (m_enemy[3]->get_strength() == 0 && m_enemy[3]->get_current_frame() < ENEMY_DEATH_MAX_FRAME - 1 && !m_player->get_attack()) {
 			int frame = m_enemy[3]->get_current_frame();
 			frame_time = SDL_GetTicks() - start_time;
 			start_time = SDL_GetTicks();
@@ -417,7 +405,7 @@ void Level9::render()
 				SDL_Delay(100);
 			}
 		}
-		else if (m_enemy[3]->get_attack() && m_enemy[3]->get_current_frame() < WITCH_ATTACK_MAX_FRAME - 1) {
+		else if (m_enemy[3]->get_attack() && m_enemy[3]->get_current_frame() < ENEMY_ATTACK_MAX_FRAME - 1) {
 			int frame = m_enemy[3]->get_current_frame();
 			frame_time = SDL_GetTicks() - start_time;
 			start_time = SDL_GetTicks();
@@ -461,31 +449,7 @@ void Level9::render()
 	else return;
 	if (!m_exit && m_enemy[5] != nullptr) {
 		m_enemy[5]->draw();
-		m_enemy[5]->strength_to_text(ENEMY5_BASE_X + 50, ENEMY5_BASE_Y + 15, "-"s);
-		if (m_enemy[5]->get_strength() != 0 && !m_enemy[5]->get_attack()) {
-			m_enemy[5]->set_current_frame((int)((SDL_GetTicks() / 100) % (WITCH_DEFAULT_MAX_FRAME - 1)));
-		}
-		if (m_enemy[5]->get_strength() == 0 && m_enemy[5]->get_current_frame() < WITCH_DEATH_MAX_FRAME - 1 && !m_player->get_attack()) {
-			int frame = m_enemy[5]->get_current_frame();
-			frame_time = SDL_GetTicks() - start_time;
-			start_time = SDL_GetTicks();
-			if (frame_time > 100) {
-				frame++;
-				m_enemy[5]->set_current_frame(frame);
-				SDL_Delay(100);
-			}
-		}
-		else if (m_enemy[5]->get_attack() && m_enemy[5]->get_current_frame() < WITCH_ATTACK_MAX_FRAME - 1) {
-			int frame = m_enemy[5]->get_current_frame();
-			frame_time = SDL_GetTicks() - start_time;
-			start_time = SDL_GetTicks();
-			if (frame_time > 100) {
-				frame++;
-				m_enemy[5]->set_current_frame(frame);
-				SDL_Delay(100);
-			}
-		}
-		else m_enemy[5]->set_attack(false);
+		m_enemy[5]->strength_to_text(ENEMY5_BASE_X + 50, ENEMY5_BASE_Y + 15, "x"s, true);
 	}
 	else return;
 	if (!m_exit && m_enemy[6] != nullptr) {
@@ -604,9 +568,43 @@ void Level9::render()
 		else m_enemy[9]->set_attack(false);
 	}
 	else return;
+	if (!m_exit && m_enemy[10] != nullptr) {
+		m_enemy[10]->draw();
+		m_enemy[10]->strength_to_text(ENEMY10_BASE_X + 50, ENEMY10_BASE_Y + 15, "x"s, true);
+	}
+	else return;
+	if (!m_exit && m_enemy[11] != nullptr) {
+		m_enemy[11]->draw();
+		m_enemy[11]->strength_to_text(ENEMY11_BASE_X + 50, ENEMY11_BASE_Y + 15, "+"s);
+		if (m_enemy[11]->get_strength() != 0 && !m_enemy[11]->get_attack()) {
+			m_enemy[11]->set_current_frame((int)((SDL_GetTicks() / 100) % (ENEMY_DEFAULT_MAX_FRAME - 1)));
+		}
+		if (m_enemy[11]->get_strength() == 0 && m_enemy[11]->get_current_frame() < ENEMY_DEATH_MAX_FRAME - 1 && !m_player->get_attack()) {
+			int frame = m_enemy[11]->get_current_frame();
+			frame_time = SDL_GetTicks() - start_time;
+			start_time = SDL_GetTicks();
+			if (frame_time > 100) {
+				frame++;
+				m_enemy[11]->set_current_frame(frame);
+				SDL_Delay(100);
+			}
+		}
+		else if (m_enemy[11]->get_attack() && m_enemy[11]->get_current_frame() < ENEMY_ATTACK_MAX_FRAME - 1) {
+			int frame = m_enemy[11]->get_current_frame();
+			frame_time = SDL_GetTicks() - start_time;
+			start_time = SDL_GetTicks();
+			if (frame_time > 100) {
+				frame++;
+				m_enemy[11]->set_current_frame(frame);
+				SDL_Delay(100);
+			}
+		}
+		else m_enemy[11]->set_attack(false);
+	}
+	else return;
 }
 
-bool Level9::on_start()
+bool Level10::on_start()
 {
 	if (!Texture_manager::instance()->load("pic/game_play_background.png"s, "game_play_background"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/replay.png"s, "replay"s, game::instance()->get_renderer())) return false;
@@ -639,25 +637,29 @@ bool Level9::on_start()
 	m_object.push_back(new Game_object("base"s, ENEMY7_BASE_X, ENEMY7_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy7's base
 	m_object.push_back(new Game_object("base"s, ENEMY8_BASE_X, ENEMY8_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy8's base
 	m_object.push_back(new Game_object("base"s, ENEMY9_BASE_X, ENEMY9_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy9's base
+	m_object.push_back(new Game_object("base"s, ENEMY10_BASE_X, ENEMY10_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy10's base
+	m_object.push_back(new Game_object("base"s, ENEMY11_BASE_X, ENEMY11_BASE_Y, BASE_WIDTH, BASE_HEIGHT));//enemy11's base
 
 	m_player = new Player("player_idle"s, PLAYER_STRENGTH, PLAYER_BASE_X + 0.5 * (BASE_WIDTH - PLAYER_WIDTH), PLAYER_BASE_Y + PLAYER_Y_SCALE, PLAYER_WIDTH, PLAYER_HEIGHT);//player
 
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY0_STRENGTH, ENEMY0_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY0_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy0
+	m_enemy.push_back(new Enemy("buff"s, ENEMY0_STRENGTH, ENEMY0_BASE_X + 0.5 * (BASE_WIDTH - BUFF_WIDTH), ENEMY0_BASE_Y + BUFF_Y_SCALE, BUFF_WIDTH, BUFF_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy0
 	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY1_STRENGTH, ENEMY1_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY1_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy1
 	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY2_STRENGTH, ENEMY2_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY2_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy2
-	m_enemy.push_back(new Enemy("witch_idle"s, ENEMY3_STRENGTH, ENEMY3_BASE_X + 0.5 * (BASE_WIDTH - WITCH_WIDTH), ENEMY3_BASE_Y + WITCH_Y_SCALE, WITCH_WIDTH, WITCH_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy3
+	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY3_STRENGTH, ENEMY3_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY3_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy3
 	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY4_STRENGTH, ENEMY4_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY4_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy4
-	m_enemy.push_back(new Enemy("witch_idle"s, ENEMY5_STRENGTH, ENEMY5_BASE_X + 0.5 * (BASE_WIDTH - WITCH_WIDTH), ENEMY5_BASE_Y + WITCH_Y_SCALE, WITCH_WIDTH, WITCH_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy5
+	m_enemy.push_back(new Enemy("buff"s, ENEMY5_STRENGTH, ENEMY5_BASE_X + 0.5 * (BASE_WIDTH - BUFF_WIDTH), ENEMY5_BASE_Y + BUFF_Y_SCALE, BUFF_WIDTH, BUFF_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy0
 	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY6_STRENGTH, ENEMY6_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY6_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy6
 	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY7_STRENGTH, ENEMY7_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY7_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy7
-	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY8_STRENGTH, ENEMY8_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY8_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy8
+	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY8_STRENGTH, ENEMY8_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY8_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy7
 	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY9_STRENGTH, ENEMY9_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY9_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy9
+	m_enemy.push_back(new Enemy("buff"s, ENEMY10_STRENGTH, ENEMY10_BASE_X + 0.5 * (BASE_WIDTH - BUFF_WIDTH), ENEMY10_BASE_Y + BUFF_Y_SCALE, BUFF_WIDTH, BUFF_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy0
+	m_enemy.push_back(new Enemy("enemy_default"s, ENEMY11_STRENGTH, ENEMY11_BASE_X + 0.5 * (BASE_WIDTH - ENEMY_WIDTH), ENEMY11_BASE_Y + ENEMY_Y_SCALE, ENEMY_WIDTH, ENEMY_HEIGHT, SDL_FLIP_HORIZONTAL)); enemy_count++;//enemy11
 
 	m_exit = false;
 	return true;
 }
 
-bool Level9::on_exit()
+bool Level10::on_exit()
 {
 	clean();
 	m_object.clear();
@@ -682,17 +684,17 @@ bool Level9::on_exit()
 	return true;
 }
 
-void Level9::replay()
+void Level10::replay()
 {
-	game::instance()->get_game_state_manager()->replace(new Level9);
+	game::instance()->get_game_state_manager()->replace(new Level10);
 }
 
-void Level9::to_level_list()
+void Level10::to_level_list()
 {
 	game::instance()->get_game_state_manager()->replace(new Level_list);
 }
 
-int Level9::count_defeated()
+int Level10::count_defeated()
 {
 	int count{ 0 };
 	for (int i = 0; i < m_enemy.size(); i++) {
@@ -704,7 +706,7 @@ int Level9::count_defeated()
 	return count;
 }
 
-bool Level9::is_tower_destroyed(int start_enemy_index, int end_enemy_index)
+bool Level10::is_tower_destroyed(int start_enemy_index, int end_enemy_index)
 {
 	for (int i = start_enemy_index; i <= end_enemy_index; i++) {
 		if (!m_exit && m_enemy[i] != nullptr) {
@@ -714,20 +716,20 @@ bool Level9::is_tower_destroyed(int start_enemy_index, int end_enemy_index)
 	return true;
 }
 
-bool Level9::frame_check_defeat()
+bool Level10::frame_check_defeat()
 {
 	if (m_player->get_strength() == 0 && m_player->get_current_frame() >= PLAYER_DEATH_MAX_FRAME - 1) return true;
 	else return false;
 }
 
-bool Level9::check_enemy_attack()
+bool Level10::check_enemy_attack()
 {
 	for (auto p : m_enemy) {
 		if (p->get_attack()) return true;
 	}
 	return false;
 }
-bool Level9::frame_check_victory()
+bool Level10::frame_check_victory()
 {
 	if (count_defeated() == enemy_count) {
 		for (auto p : m_enemy) {
