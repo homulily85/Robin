@@ -29,7 +29,7 @@ void Game_state_manager::replace(Game_state* state)
 	{
 		if (m_game_state.back()->on_exit())
 		{
-			//delete m_game_state.back();
+			delete m_game_state.back();
 			m_game_state.pop_back();
 		}
 	}
