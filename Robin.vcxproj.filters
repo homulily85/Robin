@@ -117,6 +117,12 @@
     <ClInclude Include="state\level\Level10.h">
       <Filter>Header Files\state\level</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="state\level\Level11.h">
+      <Filter>Header Files\state\level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\game.cpp">
@@ -191,5 +197,18 @@
     <ClCompile Include="state\level\Level10.cpp">
       <Filter>Source Files\state\level</Filter>
     </ClCompile>
+    <ClCompile Include="state\level\Level11.cpp">
+      <Filter>Source Files\state\level</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Robin.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="pic\icon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

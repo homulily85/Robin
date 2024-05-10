@@ -1,6 +1,6 @@
 Level 1 cleared: 1
 Level 2 cleared: 1
-Level 3 cleared: 0
+Level 3 cleared: 1
 Level 4 cleared: 0
 Level 5 cleared: 0
 Level 6 cleared: 0
@@ -8,8 +8,5 @@ Level 7 cleared: 0
 Level 8 cleared: 0
 Level 9 cleared: 0
 Level 10 cleared: 0
-Entered Level 3
-Entered Victory
-Exited Level 3
-Exited Victory
+Entered Level 11
 Game cleaned up successfully
