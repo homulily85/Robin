@@ -129,9 +129,9 @@ void game::clean_up()
 
 bool game::is_all_level_before_cleared(int level)
 {
-   /* level--;
+    level--;
 	for (int i = 0; i < level; i++) {
 		if (!m_level_cleared[i]) return false;
-	}*/
+	}
     return true;
 }
