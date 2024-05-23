@@ -45,6 +45,7 @@ bool Level_list::on_start()
 	if (!Texture_manager::instance()->load("pic/back_button.png"s, "back_button"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/level_icon.png"s, "level_icon"s, game::instance()->get_renderer())) return false;
 	if (!Texture_manager::instance()->load("pic/level_lock.png"s, "level_lock"s, game::instance()->get_renderer())) return false;
+	if(!Texture_manager::instance()->load("pic/check_mark.png"s,"check_mark"s,game::instance()->get_renderer())) return false;
 
 	for (int i = 1; i <= 3; i++) {
 		for (int j = 1; j <= 5; j++) {
@@ -57,11 +58,33 @@ bool Level_list::on_start()
 	}
 	m_object.push_back(new Game_object("background"s, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT));
 	m_object.push_back(new Menu_button("back_button"s, WINDOW_WIDTH * 0.05, WINDOW_HEIGHT * 0.88, 84, 84, exit_to_menu));
+
 	for (int i = 1; i <= 4; i++) {
 		for (int j = 1; j <= 5; j++) {
 			if ((i - 1) * 5 + j <= 10)
 			{
 				m_object.push_back(new Menu_button("level_icon"s, WINDOW_WIDTH * 0.22 + WINDOW_WIDTH * 0.12 * (j - 1), WINDOW_HEIGHT * 0.1 + WINDOW_HEIGHT * 0.2 * (i - 1), 90, 105, level_list_to_play));
+				if (game::instance()->is_all_level_before_cleared((i - 1) * 5 + j)) {
+					if (j + 5 * (i - 1) < 10) m_object.push_back(new Game_object("level"s + std::to_string(j + 5 * (i - 1)), WINDOW_WIDTH * 0.24 + WINDOW_WIDTH * 0.12 * (j - 1), WINDOW_HEIGHT * 0.11 + WINDOW_HEIGHT * 0.2 * (i - 1), Texture_manager::instance()->get_text_width("level"s + std::to_string(j + 5 * (i - 1))), Texture_manager::instance()->get_text_height("level"s + std::to_string(j + 5 * (i - 1)))));
+					else m_object.push_back(new Game_object("level"s + std::to_string(j + 5 * (i - 1)), WINDOW_WIDTH * 0.23 + WINDOW_WIDTH * 0.12 * (j - 1), WINDOW_HEIGHT * 0.11 + WINDOW_HEIGHT * 0.2 * (i - 1), Texture_manager::instance()->get_text_width("level"s + std::to_string(j + 5 * (i - 1))), Texture_manager::instance()->get_text_height("level"s + std::to_string(j + 5 * (i - 1)))));
+				}
+				else {
+					m_object.push_back(new Menu_button("level_lock"s, WINDOW_WIDTH * 0.22 + WINDOW_WIDTH * 0.12 * (j - 1), WINDOW_HEIGHT * 0.1 + WINDOW_HEIGHT * 0.2 * (i - 1), 90, 105, level_list_to_play));
+				}
+			}
+			else {
+				m_object.push_back(new Menu_button("level_lock"s, WINDOW_WIDTH * 0.22 + WINDOW_WIDTH * 0.12 * (j - 1), WINDOW_HEIGHT * 0.1 + WINDOW_HEIGHT * 0.2 * (i - 1), 90, 105, level_list_to_play));
+			}
+		}
+	}
+	for (int i = 1; i <= 4; i++) {
+		for (int j = 1; j <= 5; j++) {
+			if ((i - 1) * 5 + j <= 10)
+			{
+				m_object.push_back(new Menu_button("level_icon"s, WINDOW_WIDTH * 0.22 + WINDOW_WIDTH * 0.12 * (j - 1), WINDOW_HEIGHT * 0.1 + WINDOW_HEIGHT * 0.2 * (i - 1), 90, 105, level_list_to_play));
+				if (game::instance()->is_level_cleared((i - 1) * 5 + j)) {
+					m_object.push_back(new Game_object("check_mark"s, WINDOW_WIDTH * 0.22 + WINDOW_WIDTH * 0.12 * (j - 1), WINDOW_HEIGHT * 0.1 + WINDOW_HEIGHT * 0.2 * (i - 1), 90, 105));
+				}
 				if (game::instance()->is_all_level_before_cleared((i - 1) * 5 + j)) {
 					if (j + 5 * (i - 1) < 10) m_object.push_back(new Game_object("level"s + std::to_string(j + 5 * (i - 1)), WINDOW_WIDTH * 0.24 + WINDOW_WIDTH * 0.12 * (j - 1), WINDOW_HEIGHT * 0.11 + WINDOW_HEIGHT * 0.2 * (i - 1), Texture_manager::instance()->get_text_width("level"s + std::to_string(j + 5 * (i - 1))), Texture_manager::instance()->get_text_height("level"s + std::to_string(j + 5 * (i - 1)))));
 					else m_object.push_back(new Game_object("level"s + std::to_string(j + 5 * (i - 1)), WINDOW_WIDTH * 0.23 + WINDOW_WIDTH * 0.12 * (j - 1), WINDOW_HEIGHT * 0.11 + WINDOW_HEIGHT * 0.2 * (i - 1), Texture_manager::instance()->get_text_width("level"s + std::to_string(j + 5 * (i - 1))), Texture_manager::instance()->get_text_height("level"s + std::to_string(j + 5 * (i - 1)))));

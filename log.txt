@@ -8,4 +8,15 @@ Level 7 cleared: 0
 Level 8 cleared: 0
 Level 9 cleared: 0
 Level 10 cleared: 0
+Entered Level 1
+Entered Level 1
+Entered Level 1
+Entered Level 1
+Entered Level 2
+Entered Level 3
+Entered Level 1
+Entered Level 3
+Entered Level 1
+Entered Level 3
+Entered Level 3
 Game cleaned up successfully

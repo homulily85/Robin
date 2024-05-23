@@ -44,6 +44,7 @@ public:
 	bool m_is_paused{ false };
 	std::ofstream& get_log_file() { return m_log_file; }
 	bool is_all_level_before_cleared(int level);
+	bool is_level_cleared(int level) { return m_level_cleared[level - 1]; }
 	void set_level_cleared(int level) { m_level_cleared[level-1] = true; }
 private:
 	//Ensure that game object can be initialized only once
