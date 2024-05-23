@@ -10,7 +10,7 @@ Download and extract _Robin_v1.x.x.zip_ [here](https://github.com/homulily85/Rob
 
 **Note:** Some browsers will block your download. They might say that "the file may be potentially harmfull" because it is unknown and has not yet been downloaded many times. This message does not mean that the file is bad or unsafe! Please ignore the messege and keep this file.
 
-##Idea
+## Idea
 Original idea for this game is from [YEAH! YOU WANT "THOSE GAMES," RIGHT? SO HERE YOU GO! NOW, LET'S SEE YOU CLEAR THEM!](https://store.steampowered.com/app/2348100/YEAH_YOU_WANT_THOSE_GAMES_RIGHT_SO_HERE_YOU_GO_NOW_LETS_SEE_YOU_CLEAR_THEM/), _Number Tower_ section.
 
 ## Thanks
